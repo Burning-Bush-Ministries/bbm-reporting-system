@@ -15,7 +15,7 @@ import {
 
 export default function DashboardApp() {
   return (
-    <Page title="Dashboard | GCT">
+    <Page title="Dashboard | BBM">
       <Container maxWidth="xl">
         <Box sx={{ pb: 5 }}>
           <Typography variant="h4">Hi, Welcome back</Typography>

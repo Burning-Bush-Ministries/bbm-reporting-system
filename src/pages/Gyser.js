@@ -39,7 +39,7 @@ const ContentStyle = styled('div')(({ theme }) => ({
 
 export default function Gyser() {
   return (
-    <RootStyle title="Gyser | GCT">
+    <RootStyle title="Gyser | BBM">
       {/* <AuthLayout /> */}
 
       <SectionStyle sx={{ display: { xs: 'none', md: 'flex' } }}>

@@ -184,7 +184,7 @@ class User extends Component {
     const { page, order, selected, orderBy, filterName, ARRAY_TO_USE, rowsPerPage } = this.state;
 
     return (
-      <Page title="User | GCT">
+      <Page title="User | BBM">
         <Container>
           <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
             <Typography variant="h4" gutterBottom>
