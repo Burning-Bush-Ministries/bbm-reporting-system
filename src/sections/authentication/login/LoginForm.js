@@ -12,7 +12,8 @@ import {
   TextField,
   IconButton,
   InputAdornment,
-  FormControlLabel
+  FormControlLabel,
+  colors
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // component
@@ -32,15 +33,17 @@ const headers = {
 export default function LoginForm() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [incorrectPass, setIncorrectPasswword] = useState(false);
 
   const LoginSchema = Yup.object().shape({
-    email: Yup.string().required('Username is required'),
+    username: Yup.string().required('Username is required'),
     password: Yup.string().required('Password is required')
   });
 
+
   const formik = useFormik({
     initialValues: {
-      email: '',
+      username: '',
       password: '',
       remember: true
     },
@@ -56,6 +59,10 @@ export default function LoginForm() {
     setShowPassword((show) => !show);
   };
 
+  const handleIncorrectPasswword = (incorrectPass) => {
+    setIncorrectPasswword(incorrectPass);
+  };
+
   const validateLoginUser = async () => {
     const loginObject = {
       username : {...getFieldProps('username')}.value,
@@ -69,16 +76,21 @@ export default function LoginForm() {
             })
       .then(function(response) {
         console.log('Authenticated',response);
+        handleIncorrectPasswword(false);
         navigate('/dashboard', { replace: true });
 
       }).catch(function(error) {
+        handleIncorrectPasswword(true);
         console.log('Error on Authentication',error);
-        navigate('/login', { replace: true });
+        console.log('handleIncorrectPasswword',incorrectPass);
 
+        // navigate('/login', { replace: true });
       });
     } catch (err) {
       console.log(err);
+      incorrectPass = true;
       throw err;
+      
     }
  
   };
@@ -117,6 +129,11 @@ export default function LoginForm() {
             helperText={touched.password && errors.password}
           />
         </Stack>
+        <Stack>
+        {incorrectPass ? <div style={{color:'red'}}>
+          INCORRECT PASSWORD OR USERNAME!!
+        </div> : ""}
+        </Stack>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2 }}>
           <FormControlLabel
@@ -134,7 +151,7 @@ export default function LoginForm() {
           size="large"
           type="submit"
           variant="contained"
-          loading={isSubmitting}
+          loading={isSubmitting && !incorrectPass}
         >
           Login
         </LoadingButton>
