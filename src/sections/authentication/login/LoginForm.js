@@ -20,7 +20,7 @@ import Iconify from '../../../components/Iconify';
 
 // ----------------------------------------------------------------------
 const dev_BASE_URL = "http://localhost:8080/" 
-const BASE_URL = "https://bbmapi20230807123059.azurewebsites.net/api/User" 
+const BASE_URL = "https://bbmapi20230807123059.azurewebsites.net/api/User/" 
 const axios = require('axios');
 const headers = {
   'Content-Type': 'application/json;charset=UTF-8',
@@ -34,13 +34,13 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   const LoginSchema = Yup.object().shape({
-    email: Yup.string().email('Email must be a valid email address').required('Email is required'),
+    username: Yup.string().required('Username is required'),
     password: Yup.string().required('Password is required')
   });
 
   const formik = useFormik({
     initialValues: {
-      email: '',
+      username: '',
       password: '',
       remember: true
     },
@@ -58,12 +58,12 @@ export default function LoginForm() {
 
   const validateLoginUser = async () => {
     const loginObject = {
-      email : {...getFieldProps('email')},
-      password : {...getFieldProps('password')}
+      username : {...getFieldProps('username')}.value,
+      password : {...getFieldProps('password')}.value
     }
 
     try {
-      await axios.post(BASE_URL + 'login',loginObject,{
+      await axios.post(BASE_URL + 'Login',loginObject,{
         mode: 'cors',
         headers: headers
             })
@@ -91,11 +91,10 @@ export default function LoginForm() {
           <TextField
             fullWidth
             autoComplete="username"
-            type="email"
-            label="Email address"
-            {...getFieldProps('email')}
-            error={Boolean(touched.email && errors.email)}
-            helperText={touched.email && errors.email}
+            label="User name"
+            {...getFieldProps('username')}
+            error={Boolean(touched.username && errors.username)}
+            helperText={touched.username && errors.username}
           />
 
           <TextField
