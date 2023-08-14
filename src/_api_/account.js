@@ -2,7 +2,7 @@
 
 const account = {
   displayName: 'Administrator',
-  email: 'admin@gctza.co.za',
+  email: 'admin@burningbushministries.co.za',
   photoURL: '/static/mock-images/avatars/avatar_default.jpg'
 };
 

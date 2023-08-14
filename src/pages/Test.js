@@ -33,12 +33,12 @@ import USERLIST from '../_api_/user';
 // ----------------------------------------------------------------------
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
-  { id: 'company', label: 'Company', alignRight: false },
-  { id: 'username', label: 'Username', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
+  { id: 'address', label: 'Adress', alignRight: false },
+  { id: 'contactNo', label: 'Contact No.', alignRight: false },
+  { id: 'status', label: 'Member', alignRight: false },
   { id: 'ethnicity', label: 'Ethnicity', alignRight: false },
   { id: 'email', label: 'Email', alignRight: false },
-  { id: 'hours', label: 'Time', alignRight: false },
+  { id: 'maritalStatus', label: 'Marital Status', alignRight: false },
   { id: 'gender', label: 'Gender', alignRight: false },
   { id: '' }
 ];
@@ -227,12 +227,12 @@ class User extends Component {
                         const {
                           id,
                           name,
-                          company,
-                          username,
+                          address,
+                          contactNumber,
                           avatarUrl,
                           ethnicity,
                           email,
-                          hours,
+                          maritalStatus,
                           gender,
                           status
                         } = row;
@@ -261,8 +261,8 @@ class User extends Component {
                                 </Typography>
                               </Stack>
                             </TableCell>
-                            <TableCell align="left">{company}</TableCell>
-                            <TableCell align="left">{username}</TableCell>
+                            <TableCell align="left">{address}</TableCell>
+                            <TableCell align="left">{contactNumber}</TableCell>
                             <TableCell align="left">
                               <Label variant="ghost" color={(status === 'banned' && 'error') || 'success'}>
                                 {status}
@@ -270,7 +270,7 @@ class User extends Component {
                             </TableCell>
                             <TableCell align="left">{ethnicity}</TableCell>
                             <TableCell align="left">{email}</TableCell>
-                            <TableCell align="left">{hours}</TableCell>
+                            <TableCell align="left">{maritalStatus}</TableCell>
                             <TableCell align="left">{gender}</TableCell>
 
                             <TableCell align="right">
