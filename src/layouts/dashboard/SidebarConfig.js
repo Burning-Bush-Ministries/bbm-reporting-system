@@ -12,25 +12,30 @@ const sidebarConfig = [
     icon: getIcon('eva:pie-chart-2-fill')
   },
   {
-    title: 'user',
+    title: 'people',
     path: '/dashboard/user',
     icon: getIcon('eva:people-fill')
+  },
+  {
+    title: 'church',
+    path: '/dashboard/church',
+    icon: getIcon('eva:home-fill')
+  },
+  {
+    title: 'stats',
+    path: '/dashboard/stats',
+    icon: getIcon('eva:list-outline')
+  },
+  {
+    title: 'reports',
+    path: '/dashboard/reports',
+    icon: getIcon('eva:attach-outline')
+  },
+  {
+    title: 'cells',
+    path: '/dashboard/cells',
+    icon: getIcon('eva:book-open-fill')
   }
-  // {
-  //   title: 'login',
-  //   path: '/login',
-  //   icon: getIcon('eva:lock-fill')
-  // },
-  // {
-  //   title: 'register',
-  //   path: '/register',
-  //   icon: getIcon('eva:person-add-fill')
-  // },
-  // {
-  //   title: 'Not found',
-  //   path: '/404',
-  //   icon: getIcon('eva:alert-triangle-fill')
-  // }
 ];
 
 export default sidebarConfig;

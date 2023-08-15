@@ -34,9 +34,8 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-const TOTAL = 150;
-
 export default function FaithKids() {
+  const TOTAL = 150;
   return (
     <RootStyle>
       <IconWrapperStyle>
