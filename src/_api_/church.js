@@ -1,7 +1,5 @@
 /* eslint-disable */
 
-import { mockImgAvatar } from '../utils/mockImages';
-
 // ----------------------------------------------------------------------
 const axios = require('axios');
 
@@ -20,12 +18,12 @@ const getChurch = async () => {
       region: _.region,
       pastorId: _.pastorId
     }));
-    return res;
+    return resp.data;
   } catch (err) {
     console.log(err);
     throw err;
   }
 };
-const churchArray = getChurch();
+const churchArray = await getChurch();
 
 export default churchArray;

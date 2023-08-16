@@ -12,6 +12,7 @@ import Blog from './pages/Blog';
 import User from './pages/Test';
 import NotFound from './pages/Page404';
 import Auth from './pages/Auth';
+import Chruch from './pages/Church';
 
 // ----------------------------------------------------------------------
 
@@ -23,8 +24,11 @@ export default function Router() {
       children: [
         { path: '', element: <DashboardApp /> },
         { path: 'user', element: <User /> },
-        { path: 'products', element: <Products /> },
-        { path: 'blog', element: <Blog /> }
+        { path: 'church', element: <Chruch /> },
+        { path: 'stats', element: <Blog /> },
+        { path: 'reports', element: <Blog /> },
+        { path: 'cells', element: <Blog /> },
+        { path: 'stats', element: <Blog /> }
       ]
     },
     {
