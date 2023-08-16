@@ -35,7 +35,7 @@ const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
   { id: 'company', label: 'Company', alignRight: false },
   { id: 'status', label: 'Status', alignRight: false },
-  { id: 'ethnicity', label: 'Ethnicity', alignRight: false },
+  { id: 'church', label: 'Church', alignRight: false },
   { id: 'email', label: 'Email', alignRight: false },
   { id: 'hours', label: 'Time', alignRight: false },
   { id: 'gender', label: 'Gender', alignRight: false },

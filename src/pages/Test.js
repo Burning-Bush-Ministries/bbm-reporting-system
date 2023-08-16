@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import { filter } from 'lodash';
-import { sentenceCase } from 'change-case';
 import { Link as RouterLink } from 'react-router-dom';
 // material
 import {
@@ -32,12 +31,12 @@ import USERLIST from '../_api_/user';
 
 // ----------------------------------------------------------------------
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
+  { id: 'name', label: 'Full Name', alignRight: false },
   { id: 'address', label: 'Adress', alignRight: false },
   { id: 'contactNo', label: 'Contact No.', alignRight: false },
   { id: 'status', label: 'Member', alignRight: false },
-  { id: 'ethnicity', label: 'Ethnicity', alignRight: false },
-  { id: 'email', label: 'Email', alignRight: false },
+  { id: 'church', label: 'Church', alignRight: false },
+  // { id: 'email', label: 'Email', alignRight: false },
   { id: 'maritalStatus', label: 'Marital Status', alignRight: false },
   { id: 'gender', label: 'Gender', alignRight: false },
   { id: '' }
@@ -87,8 +86,7 @@ class User extends Component {
       selected: [],
       orderBy: 'name',
       filterName: '',
-      rowsPerPage: 5,
-      ARRAY_TO_USE: []
+      rowsPerPage: 5
     };
     this.forceUpdate();
     this.displayData = this.displayData.bind(this);
@@ -97,7 +95,7 @@ class User extends Component {
 
   componentDidUpdate() {
     this.handleChangeRowsPerPage
-    //this.render()
+    this.render()
   }
 
   alertName = () => {
@@ -157,14 +155,14 @@ class User extends Component {
     this.setState({ filterName: event.target.value });
   };
 
-  emptyRows = (ARRAY_TO_USE) =>
+  emptyRows = (USERLIST) =>
     this.state.page > 0
-      ? Math.max(0, (1 + this.state.page) * this.state.rowsPerPage - ARRAY_TO_USE.length)
+      ? Math.max(0, (1 + this.state.page) * this.state.rowsPerPage - USERLIST.length)
       : 0;
 
-  filteredUsers = (ARRAY_TO_USE) =>
+  filteredUsers = (USERLIST) =>
     applySortFilter(
-      ARRAY_TO_USE,
+      USERLIST,
       getComparator(this.state.order, this.state.orderBy),
       this.state.filterName
     );
@@ -172,16 +170,14 @@ class User extends Component {
   isUserNotFound = this.state?.filteredUsers?.length === 0;
 
   displayData = () => {
-    USERLIST.then((ARRAY_TO_USE) => {
-      console.log('Dude: => ', ARRAY_TO_USE);
-      this.setState({ ARRAY_TO_USE: ARRAY_TO_USE });
-    });
+    console.log('Dude: => ', USERLIST);
+    this.setState({ ARRAY_TO_USE: USERLIST });
     this.forceUpdate();
   };
 
 
   render() {
-    const { page, order, selected, orderBy, filterName, ARRAY_TO_USE, rowsPerPage } = this.state;
+    const { page, order, selected, orderBy, filterName, rowsPerPage } = this.state;
 
     return (
       <Page title="User | BBM">
@@ -214,14 +210,14 @@ class User extends Component {
                     order={order}
                     orderBy={orderBy}
                     headLabel={TABLE_HEAD}
-                    rowCount={ARRAY_TO_USE.length}
+                    rowCount={USERLIST.length}
                     numSelected={selected?.length}
                     onRequestSort={this.handleRequestSort}
                     onSelectAllClick={this.handleSelectAllClick}
                   />
 
                   <TableBody>
-                    {this.filteredUsers(ARRAY_TO_USE)
+                    {this.filteredUsers(USERLIST)
                       ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                       .map((row) => {
                         const {
@@ -229,9 +225,9 @@ class User extends Component {
                           name,
                           address,
                           contactNumber,
-                          avatarUrl,
-                          ethnicity,
-                          email,
+                          surname,
+                          churchId,
+                          // email,
                           maritalStatus,
                           gender,
                           status
@@ -255,9 +251,9 @@ class User extends Component {
                             </TableCell>
                             <TableCell component="th" scope="row" padding="none">
                               <Stack direction="row" alignItems="center" spacing={2}>
-                                <Avatar alt={name} src={avatarUrl} />
+                                {/* <Avatar alt={name} src={avatarUrl} /> */}
                                 <Typography variant="subtitle2" noWrap>
-                                  {name}
+                                  {name} {surname}
                                 </Typography>
                               </Stack>
                             </TableCell>
@@ -268,8 +264,8 @@ class User extends Component {
                                 {status}
                               </Label>
                             </TableCell>
-                            <TableCell align="left">{ethnicity}</TableCell>
-                            <TableCell align="left">{email}</TableCell>
+                            <TableCell align="left">{churchId}</TableCell>
+                            {/* <TableCell align="left">{email}</TableCell> */}
                             <TableCell align="left">{maritalStatus}</TableCell>
                             <TableCell align="left">{gender}</TableCell>
 
@@ -278,9 +274,9 @@ class User extends Component {
                             </TableCell>
                           </TableRow>
                         );
-                      })} {console.log('Inside: => ', ARRAY_TO_USE)}
-                    {this.emptyRows(ARRAY_TO_USE) > 0 && (
-                      <TableRow style={{ height: 53 * this.emptyRows(ARRAY_TO_USE) }}>
+                      })} {console.log('Inside: => ', USERLIST)}
+                    {this.emptyRows(USERLIST) > 0 && (
+                      <TableRow style={{ height: 53 * this.emptyRows(USERLIST) }}>
                         <TableCell colSpan={6} />
                       </TableRow>
                     )}
@@ -302,7 +298,7 @@ class User extends Component {
             <TablePagination
               rowsPerPageOptions={[5, 10, 25]}
               component="div"
-              count={ARRAY_TO_USE.length}
+              count={USERLIST.length}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={this.handleChangePage}

@@ -3,19 +3,16 @@
 // ----------------------------------------------------------------------
 const axios = require('axios');
 var userObject = {
-  "lastName": "string",
-  "firstName": "string",
+  "name": "string",
+  "username": "string",
   "email": "string",
-  "occupation": "string",
-  "online": 0,
+  "comments": "string",
+  "churchId": 0,
   "tagID": "string",
   "gender": "string",
-  "ethnicity": "string",
-  "username": "string",
-  "biometricID": "string",
-  "faceID": "string",
-  "password": "string",
-  "tenantID": 0
+  "contactNumber": "string",
+  "address": "string",
+  "maritalStatus": "string",
 }
 const addUsers = async ({userObject}) => {
   try {

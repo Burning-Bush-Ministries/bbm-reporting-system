@@ -23,12 +23,12 @@ const getUsers = async () => {
       username: _.username,
       maritalStatus: _.maritalStatus
     }));
-    return res;
+    return resp.data;
   } catch (err) {
     console.log(err);
     throw err;
   }
 };
-const userArray = getUsers();
+const userArray = await getUsers();
 
 export default userArray;

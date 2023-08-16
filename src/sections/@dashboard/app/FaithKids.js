@@ -34,14 +34,13 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function FaithKids() {
-  const TOTAL = 150;
+export default function FaithKids({ FK = 0 }) {
   return (
     <RootStyle>
       <IconWrapperStyle>
         <Iconify icon="ant-design:android-filled" width={24} height={24} />
       </IconWrapperStyle>
-      <Typography variant="h3">{fShortenNumber(TOTAL)}</Typography>
+      <Typography variant="h3">{fShortenNumber(FK)}</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
         Faith Kids
       </Typography>

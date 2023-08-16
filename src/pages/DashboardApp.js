@@ -12,34 +12,41 @@ import {
   FaithKids,
   Offering
 } from '../sections/@dashboard/app';
+import STATSLIST from '../_api_/stats';
 
 // ----------------------------------------------------------------------
 
 export default function DashboardApp() {
+  console.log('Stats List: ' && STATSLIST[0].adult);
+  console.log('Array ' && { STATSLIST });
+  const lastRow = STATSLIST.length - 1;
+
   return (
     <Page title="Dashboard | BBM">
       <Container maxWidth="xl">
         <Box sx={{ pb: 5 }}>
-          <Typography variant="h4">Hi, Welcome back</Typography>
+          <Typography variant="h4">
+            Hi, Welcome back. Stats Date: {STATSLIST[lastRow].date}
+          </Typography>
         </Box>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={2}>
-            <TotalAdults />
+            <TotalAdults ADULTS={STATSLIST[lastRow].adult} />
           </Grid>
           <Grid item xs={12} sm={6} md={2}>
-            <FaithKids />
+            <FaithKids FK={STATSLIST[lastRow].fk} />
           </Grid>
           <Grid item xs={12} sm={6} md={2}>
-            <NoSaved />
+            <NoSaved SAVED={STATSLIST[lastRow].saved} />
           </Grid>
           <Grid item xs={12} sm={6} md={2}>
-            <Offering />
+            <Offering OFFERING={STATSLIST[lastRow].offering} />
           </Grid>
           <Grid item xs={12} sm={6} md={2}>
-            <Visitors />
+            <Visitors VISITOR={STATSLIST[lastRow].visitors} />
           </Grid>
           <Grid item xs={12} sm={6} md={2}>
-            <Cars />
+            <Cars CARS={STATSLIST[lastRow].car} />
           </Grid>
 
           <Grid item xs={12} md={6} lg={8}>

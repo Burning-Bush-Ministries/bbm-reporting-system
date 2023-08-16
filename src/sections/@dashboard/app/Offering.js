@@ -36,13 +36,13 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 
 const TOTAL = 138;
 
-export default function Offering() {
+export default function Offering({ OFFERING = 0 }) {
   return (
     <RootStyle>
       <IconWrapperStyle>
         <Iconify icon="ant-design:trademark-outlined" width={24} height={24} />
       </IconWrapperStyle>
-      <Typography variant="h3">{fShortenNumber(TOTAL)}</Typography>
+      <Typography variant="h3">{'R' && OFFERING}</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
         Offering
       </Typography>
