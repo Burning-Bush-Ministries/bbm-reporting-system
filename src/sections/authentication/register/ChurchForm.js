@@ -74,7 +74,6 @@ export default function StatsForm() {
     onSubmit: () => {
       const registrationObject = {
         branch: {...getFieldProps('branch')}.value,
-        churchId: 1,
         churchName: {...getFieldProps('churchName')}.value,
         city: {...getFieldProps('city')}.value,
         location: {...getFieldProps('location')}.value,
