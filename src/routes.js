@@ -12,7 +12,9 @@ import Blog from './pages/Blog';
 import User from './pages/Test';
 import NotFound from './pages/Page404';
 import Auth from './pages/Auth';
-import Chruch from './pages/Church';
+import Church from './pages/Church';
+import StatsRegister from './pages/StatsRegister';
+import ChurchRegister from './pages/ChurchRegister';
 
 // ----------------------------------------------------------------------
 
@@ -24,8 +26,8 @@ export default function Router() {
       children: [
         { path: '', element: <DashboardApp /> },
         { path: 'user', element: <User /> },
-        { path: 'church', element: <Chruch /> },
-        { path: 'stats', element: <Blog /> },
+        { path: 'church', element: <Church /> },
+        { path: 'stats', element: <Products /> },
         { path: 'reports', element: <Blog /> },
         { path: 'cells', element: <Blog /> },
         { path: 'stats', element: <Blog /> }
@@ -40,6 +42,8 @@ export default function Router() {
         { path: 'login', element: <Login /> },
         { path: 'gyser', element: <Gyser /> },
         { path: 'register', element: <Register /> },
+        { path: 'add-stats', element: <StatsRegister /> },
+        { path: 'add-church', element: <ChurchRegister /> },
         { path: '404', element: <NotFound /> },
         { path: '*', element: <Navigate to="/404" /> }
       ]

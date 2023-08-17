@@ -187,7 +187,7 @@ class Church extends Component {
             <Button
               variant="contained"
               component={RouterLink}
-              to="/register"
+              to="/add-church"
               startIcon={<Iconify icon="eva:plus-fill" />}
             >
               New Church

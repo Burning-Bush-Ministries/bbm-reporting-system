@@ -26,7 +26,7 @@ export default function DashboardApp() {
       <Container maxWidth="xl">
         <Box sx={{ pb: 5 }}>
           <Typography variant="h4">
-            Hi, Welcome back. Stats Date: {STATSLIST[lastRow].date}
+            Hi, Welcome back. Stats Date: {STATSLIST[lastRow].date.substring(0, 10)}
           </Typography>
         </Box>
         <Grid container spacing={2}>

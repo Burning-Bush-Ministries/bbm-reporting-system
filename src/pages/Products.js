@@ -13,7 +13,7 @@ import {
   ProductFilterSidebar
 } from '../sections/@dashboard/products';
 //
-import USERLIST from '../_api_/user';
+import PRODUCTS from '../_api_/products';
 
 // ----------------------------------------------------------------------
 

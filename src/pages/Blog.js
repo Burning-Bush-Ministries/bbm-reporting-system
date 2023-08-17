@@ -8,7 +8,7 @@ import Page from '../components/Page';
 import Iconify from '../components/Iconify';
 import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../sections/@dashboard/blog';
 //
-import USERLIST from '../_api_/user';
+import POSTS from '../_api_/blog';
 
 // ----------------------------------------------------------------------
 
