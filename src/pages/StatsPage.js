@@ -25,20 +25,20 @@ import Iconify from '../components/Iconify';
 import SearchNotFound from '../components/SearchNotFound';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../sections/@dashboard/user';
 //
-import CHURCHLIST from '../_api_/church';
+import STATSLIST from '../_api_/stats';
 
 // ----------------------------------------------------------------------
 const TABLE_HEAD = [
-  { id: 'name', label: 'Church Name', alignRight: false },
-  { id: 'branch', label: 'Branch', alignRight: false },
-  { id: 'province', label: 'Province', alignRight: false },
-  { id: 'city', label: 'City', alignRight: false },
-  { id: 'region', label: 'Region', alignRight: false },
-  { id: 'pastor', label: 'Pastor', alignRight: false },
-  { id: 'location', label: 'Location', alignRight: false },
+  { id: 'churchId', label: 'Church', alignRight: false },
+  { id: 'adult', label: 'No. Adults', alignRight: false },
+  { id: 'car', label: 'Cars', alignRight: false },
+  { id: 'fk', label: 'Faith Kids', alignRight: false },
+  { id: 'saved', label: 'Saved', alignRight: false },
+  { id: 'offering', label: 'Offering', alignRight: false },
+  { id: 'visitors', label: 'Visitors', alignRight: false },
+  { id: 'date', label: 'Date', alignRight: false },
   { id: '' }
 ];
-
 // ----------------------------------------------------------------------
 
 function descendingComparator(a, b, orderBy) {
@@ -73,7 +73,7 @@ function applySortFilter(array, comparator, query) {
   return array;
 }
 
-class Church extends Component {
+class StatsPage extends Component {
 
   constructor(props) {
     super(props);
@@ -152,14 +152,14 @@ class Church extends Component {
     this.setState({ filterName: event.target.value });
   };
 
-  emptyRows = (CHURCHLIST) =>
+  emptyRows = (STATSLIST) =>
     this.state.page > 0
-      ? Math.max(0, (1 + this.state.page) * this.state.rowsPerPage - CHURCHLIST.length)
+      ? Math.max(0, (1 + this.state.page) * this.state.rowsPerPage - STATSLIST.length)
       : 0;
 
-  filteredUsers = (CHURCHLIST) =>
+  filteredUsers = (STATSLIST) =>
     applySortFilter(
-      CHURCHLIST,
+      STATSLIST,
       getComparator(this.state.order, this.state.orderBy),
       this.state.filterName
     );
@@ -167,8 +167,8 @@ class Church extends Component {
   isUserNotFound = this.state?.filteredUsers?.length === 0;
 
   displayData = () => {
-    console.log('Dude: => ', CHURCHLIST);
-    this.setState({ ARRAY_TO_USE: CHURCHLIST });
+    console.log('Dude: => ', STATSLIST);
+    this.setState({ ARRAY_TO_USE: STATSLIST });
     this.forceUpdate();
   };
 
@@ -177,19 +177,19 @@ class Church extends Component {
     const { page, order, selected, orderBy, filterName, rowsPerPage } = this.state;
 
     return (
-      <Page title="Church | BBM">
+      <Page title="Stats | BBM">
         <Container>
           <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
             <Typography variant="h4" gutterBottom>
-              Church Details
+              Add Stats Details
             </Typography>
             <Button
               variant="contained"
               component={RouterLink}
-              to="/add-church"
+              to="/add-stats"
               startIcon={<Iconify icon="eva:plus-fill" />}
             >
-              New Church
+              New Stats
             </Button>
           </Stack>
 
@@ -207,25 +207,26 @@ class Church extends Component {
                     order={order}
                     orderBy={orderBy}
                     headLabel={TABLE_HEAD}
-                    rowCount={CHURCHLIST.length}
+                    rowCount={STATSLIST.length}
                     numSelected={selected?.length}
                     onRequestSort={this.handleRequestSort}
                     onSelectAllClick={this.handleSelectAllClick}
                   />
 
                   <TableBody>
-                    {this.filteredUsers(CHURCHLIST)
+                    {this.filteredUsers(STATSLIST)
                       ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                       .map((row) => {
                         const {
                           id,
-                          churchName,
-                          branch,
-                          province,
-                          city,
-                          region,
-                          pastorId,
-                          location
+                          churchId,
+                          adult,
+                          car,
+                          fk,
+                          saved,
+                          offering,
+                          visitors,
+                          date
                         } = row;
                         const isItemSelected = selected.indexOf(name) !== -1;
 
@@ -247,24 +248,25 @@ class Church extends Component {
                             <TableCell component="th" scope="row" padding="none">
                               <Stack direction="row" alignItems="center" spacing={2}>
                                 <Typography variant="subtitle2" noWrap>
-                                  {churchName}
+                                  {churchId}
                                 </Typography>
                               </Stack>
                             </TableCell>
-                            <TableCell align="left">{branch}</TableCell>
-                            <TableCell align="left">{province}</TableCell>
-                            <TableCell align="left">{city}</TableCell>
-                            <TableCell align="left">{region}</TableCell>
-                            <TableCell align="left">{pastorId}</TableCell>
-                            <TableCell align="left">{location}</TableCell>
+                            <TableCell align="left">{adult}</TableCell>
+                            <TableCell align="left">{car}</TableCell>
+                            <TableCell align="left">{fk}</TableCell>
+                            <TableCell align="left">{saved}</TableCell>
+                            <TableCell align="left">{offering}</TableCell>
+                            <TableCell align="left">{visitors}</TableCell>
+                            <TableCell align="left">{date}</TableCell>
                             <TableCell align="right">
                               <UserMoreMenu />
                             </TableCell>
                           </TableRow>
                         );
-                      })} {console.log('Inside: => ', CHURCHLIST)}
-                    {this.emptyRows(CHURCHLIST) > 0 && (
-                      <TableRow style={{ height: 53 * this.emptyRows(CHURCHLIST) }}>
+                      })} {console.log('Inside: => ', STATSLIST)}
+                    {this.emptyRows(STATSLIST) > 0 && (
+                      <TableRow style={{ height: 53 * this.emptyRows(STATSLIST) }}>
                         <TableCell colSpan={6} />
                       </TableRow>
                     )}
@@ -286,7 +288,7 @@ class Church extends Component {
             <TablePagination
               rowsPerPageOptions={[5, 10, 25]}
               component="div"
-              count={CHURCHLIST.length}
+              count={STATSLIST.length}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={this.handleChangePage}
@@ -299,4 +301,4 @@ class Church extends Component {
   }
 }
 
-export default Church;
+export default StatsPage;

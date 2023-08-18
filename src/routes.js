@@ -13,8 +13,10 @@ import User from './pages/Test';
 import NotFound from './pages/Page404';
 import Auth from './pages/Auth';
 import Church from './pages/Church';
-import StatsRegister from './pages/StatsRegister';
+import StatsPage from './pages/StatsPage';
 import ChurchRegister from './pages/ChurchRegister';
+import StatsRegister from './pages/StatsRegister';
+import StatsForm from './sections/authentication/register/index';
 
 // ----------------------------------------------------------------------
 
@@ -27,10 +29,10 @@ export default function Router() {
         { path: '', element: <DashboardApp /> },
         { path: 'user', element: <User /> },
         { path: 'church', element: <Church /> },
-        { path: 'stats', element: <Products /> },
-        { path: 'reports', element: <Blog /> },
-        { path: 'cells', element: <Blog /> },
-        { path: 'stats', element: <Blog /> }
+        { path: 'stats', element: <StatsPage /> },
+        { path: 'reports', element: <NotFound /> },
+        { path: 'cells', element: <NotFound /> },
+        { path: 'stats', element: <NotFound /> }
       ]
     },
     {

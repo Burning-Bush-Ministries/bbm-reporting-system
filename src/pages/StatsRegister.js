@@ -1,12 +1,12 @@
 import { Link as RouterLink } from 'react-router-dom';
 // material
 import { styled } from '@mui/material/styles';
-import { Box, Card, Link, Container, Typography } from '@mui/material';
+import { Box, Card, Container, Link, Typography, Button } from '@mui/material';
 // layouts
 import AuthLayout from '../layouts/AuthLayout';
 // components
 import Page from '../components/Page';
-import { RegisterForm } from '../sections/authentication/register';
+import { StatsForm } from '../sections/authentication/register';
 
 // ----------------------------------------------------------------------
 
@@ -40,58 +40,30 @@ const ContentStyle = styled('div')(({ theme }) => ({
 export default function StatsRegister() {
   return (
     <RootStyle title="Register | BBM">
-      {/* <AuthLayout>
-        Already have an account? &nbsp;
-        <Link underline="none" variant="subtitle2" component={RouterLink} to="/login">
-          Login
+      <AuthLayout>
+        <Link underline="none" variant="subtitle2" component={RouterLink} to="/dashboard/stats">
+          back to the stats list
         </Link>
-      </AuthLayout> */}
+      </AuthLayout>
 
       <SectionStyle sx={{ display: { xs: 'none', md: 'flex' } }}>
         <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-          Be deligent to know the state of the flock
+          Be thou diligent to know the state of thy flocks, And look well to thy herds.
         </Typography>
-        <img alt="register" src="/static/illustrations/illustration_register.png" />
+        <img alt="register" src="/static/illustrations/stats.png" />
       </SectionStyle>
 
       <Container>
         <ContentStyle>
           <Box sx={{ mb: 5 }}>
             <Typography variant="h4" gutterBottom>
-              Welcome into the BBM family, leader.
+              Add Stats details.
             </Typography>
             <Typography sx={{ color: 'text.secondary' }}>
-              Personal details, the church and your ministry.
+              Add this week's Sunday service stats
             </Typography>
           </Box>
-
-          <RegisterForm />
-
-          <Typography variant="body2" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
-            By registering, I agree to BBM&nbsp;
-            <Link underline="always" color="textPrimary">
-              Terms of Service
-            </Link>
-            &nbsp;and&nbsp;
-            <Link underline="always" color="textPrimary">
-              Privacy Policy
-            </Link>
-            .
-          </Typography>
-
-          <Typography
-            variant="subtitle2"
-            sx={{
-              mt: 3,
-              textAlign: 'center',
-              display: { sm: 'none' }
-            }}
-          >
-            Already have an account?&nbsp;
-            <Link underline="hover" to="/login" component={RouterLink}>
-              Login
-            </Link>
-          </Typography>
+          <StatsForm />
         </ContentStyle>
       </Container>
     </RootStyle>

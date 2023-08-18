@@ -8,26 +8,17 @@ import { useNavigate } from 'react-router-dom';
 // material
 import {
   Stack,
-  TextField,
-  IconButton,
-  InputAdornment,
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  FormControl,
-  FormLabel,
-  Button
+  TextField
 } from '@mui/material';
 // import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { LoadingButton } from '@mui/lab';
 import _ from 'lodash';
+
 // component
-import Iconify from '../../../components/Iconify';
 // ----------------------------------------------------------------------
 
 export default function StatsForm() {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
   const axios = require('axios');
 
   const headers = {
@@ -38,23 +29,20 @@ export default function StatsForm() {
 };
 
   const RegisterSchema = Yup.object().shape({
-    firstName: Yup.string()
+    branch: Yup.string()
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
-      .required('First name required'),
-    lastName: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Last name required'),
-    email: Yup.string().email('Email must be a valid email address').required('Email is required'),
-    password: Yup.string().required('Password is required'),
-    company: Yup.string().required('Company is required'),
-    tagid: Yup.string().required('TagID is required'),
-    ethnicity: Yup.string().required('Ethnicity is required'),
-    username: Yup.string().required('Username is required'),
-    gender: Yup.string().required('Gender is required')
+      .required('Branch name required'),
+    churchName: Yup.string().required('Church name is required'),
+    city: Yup.string().required('City is required'),
+    location: Yup.string().required('Location is required'),
+    province: Yup.string().required('Province is required'),
+    region: Yup.string().required('Region is required')
   });
 
-  const addUsers = async (userObject) => {
+  const addChurch = async (statsObject) => {
     try {
-      const response = await axios.post('https://bbmapi20230807123059.azurewebsites.net/api/Person',userObject,{
+      const response = await axios.post('https://bbmapi20230807123059.azurewebsites.net/api/Stats',statsObject,{
         mode: 'cors',
         headers: headers
     });
@@ -63,7 +51,7 @@ export default function StatsForm() {
         navigate('/dashboard', { replace: true });
       }
       else{
-        navigate('/register', { replace: true });
+        navigate('/add-church', { replace: true });
       }
     
     } catch (err) {
@@ -74,49 +62,29 @@ export default function StatsForm() {
 
   const formik = useFormik({
     initialValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      address: '',
-      maritalStatus: 0,
-      contactNo: '',
-      role: 0,
-      temperature: 25,
-      gender: 0,
-      ethnicity: '',
-      office: '',
-      ministry: '',
-      username: '',
-      personId: '0',
-      churchId: '0',
-      comments:''
+        adult: 0,
+        car: 0,
+        fk: 0,
+        saved: 0,
+        offering: 0.0,
+        visitors: 0,
+        date: '2023-08-06',
+        churchId: 1
     },
     validationSchema: RegisterSchema,
     onSubmit: () => {
       const registrationObject = {
-        tenantID: 5,
-        firstName: {...getFieldProps('firstName')}.value,
-        lastName: {...getFieldProps('lastName')}.value,
-        email: {...getFieldProps('email')}.value,
-        password: {...getFieldProps('password')}.value,
-        address: {...getFieldProps('address')}.value,
-        maritalStatus: 0,
-        contactNo: {...getFieldProps('contactNo')}.value,
-        hours: 0,
-        temperature: 25,
-        role: 1,
-        gender: 0,
-        ethnicity: {...getFieldProps('ethnicity')}.value,
-        office: {...getFieldProps('office')}.value,
-        ministry: {...getFieldProps('office')}.value,
-        username: {...getFieldProps('ministry')}.value,
-        personId: '0000000',
-        churchId: '999999',
-        comments: ''
+        adult: {...getFieldProps('adult')}.value,
+        car: {...getFieldProps('car')}.value,
+        fk: {...getFieldProps('fk')}.value,
+        saved: {...getFieldProps('saved')}.value,
+        offering: {...getFieldProps('offering')}.value,
+        visitors: {...getFieldProps('visitors')}.value,
+        date: {...getFieldProps('date')}.value,
+        churchId: 1
       };
       console.log("Values: ", registrationObject);
-      addUsers(registrationObject);
+      addChurch(registrationObject);
     }
   });
 
@@ -132,144 +100,66 @@ export default function StatsForm() {
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
             <TextField
               fullWidth
-              label="First name"
-              {...getFieldProps('firstName')}
-              error={Boolean(touched.firstName && errors.firstName)}
-              helperText={touched.firstName && errors.firstName}
+              label="Adults"
+              {...getFieldProps('adult')}
+              error={Boolean(touched.adult && errors.adult)}
+              helperText={touched.adult && errors.adult}
             />
 
             <TextField
               fullWidth
-              label="Last name"
-              {...getFieldProps('lastName')}
-              error={Boolean(touched.lastName && errors.lastName)}
-              helperText={touched.lastName && errors.lastName}
+              label="Cars"
+              {...getFieldProps('car')}
+              error={Boolean(touched.car && errors.car)}
+              helperText={touched.car && errors.car}
             />
           </Stack>
 
           <TextField
             fullWidth
-            autoComplete="contactNo"
-            label="Contact Number"
-            {...getFieldProps('contactNo')}
-            error={Boolean(touched.contactNo && errors.contactNo)}
-            helperText={touched.contactNo && errors.contactNo}
+            autoComplete="Saved"
+            label="Saved"
+            {...getFieldProps('saved')}
+            error={Boolean(touched.saved && errors.saved)}
+            helperText={touched.saved && errors.saved}
           />
 
           <TextField
             fullWidth
-            autoComplete="email"
-            type="email"
-            label="Email address"
-            {...getFieldProps('email')}
-            error={Boolean(touched.email && errors.email)}
-            helperText={touched.email && errors.email}
-          />
-
-          <TextField
-            fullWidth
-            autoComplete="current-password"
-            type={showPassword ? 'text' : 'password'}
-            label="Password"
-            {...getFieldProps('password')}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton edge="end" onClick={() => setShowPassword((prev) => !prev)}>
-                    <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
-                  </IconButton>
-                </InputAdornment>
-              )
-            }}
-            error={Boolean(touched.password && errors.password)}
-            helperText={touched.password && errors.password}
-          />
-          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-            <TextField
-              fullWidth
-              label="Username"
-              {...getFieldProps('username')}
-              error={Boolean(touched.username && errors.username)}
-              helperText={touched.username && errors.username}
-            />
-
-            <TextField
-              fullWidth
-              label="Ethnicity"
-              {...getFieldProps('ethnicity')}
-              error={Boolean(touched.ethnicity && errors.ethnicity)}
-              helperText={touched.ethnicity && errors.ethnicity}
-            />
-          </Stack>
-
-          <TextField
-            fullWidth
-            label="Address"
-            {...getFieldProps('address')}
-            error={Boolean(touched.address && errors.address)}
-            helperText={touched.address && errors.address}
+            autoComplete="offering"
+            label="Offering"
+            {...getFieldProps('offering')}
+            error={Boolean(touched.offering && errors.offering)}
+            helperText={touched.offering && errors.offering}
           />
 
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
             <TextField
               fullWidth
-              label="Church"
-              {...getFieldProps('church')}
-              error={Boolean(touched.church && errors.church)}
-              helperText={touched.church && errors.church}
+              label="Faith Kids"
+              {...getFieldProps('fk')}
+              error={Boolean(touched.fk && errors.fk)}
+              helperText={touched.fk && errors.fk}
             />
 
             <TextField
               fullWidth
-              label="Marital Status"
-              {...getFieldProps('maritalStatus')}
-              error={Boolean(touched.maritalStatus && errors.maritalStatus)}
-              helperText={touched.maritalStatus && errors.maritalStatus}
+              label="Visitor"
+              {...getFieldProps('visitor')}
+              error={Boolean(touched.visitor && errors.visitor)}
+              helperText={touched.visitor && errors.visitor}
             />
           </Stack>
 
-          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-            <TextField
-              fullWidth
-              label="Ministry"
-              {...getFieldProps('ministry')}
-              error={Boolean(touched.ministry && errors.ministry)}
-              helperText={touched.ministry && errors.ministry}
-            />
-
-            <TextField
-              fullWidth
-              label="Office"
-              {...getFieldProps('office')}
-              error={Boolean(touched.office && errors.office)}
-              helperText={touched.office && errors.office}
-            />
-          </Stack>
-
-          <FormControl>
-            <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
-            <RadioGroup
-              aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="female"
-              name="radio-buttons-group"
-              {...getFieldProps('gender')}
-            >
-              <FormControlLabel value="female" control={<Radio />} label="Female" />
-              <FormControlLabel value="male" control={<Radio />} label="Male" />
-            </RadioGroup>
-          </FormControl>
-
-          {/* <Stack direction="row" alignItems="center" spacing={2}>
-            <Input accept="image/*" id="contained-button-file" multiple type="file" />
-            <Button variant="contained" component="span">
-              Upload
-            </Button>
-            <Input accept="image/*" id="icon-button-file" type="file" />
-            <IconButton color="primary" aria-label="upload picture" component="span">
-              <PhotoCamera />
-            </IconButton>
-          </Stack> */}
-
+          <TextField
+            fullWidth
+            label="Date"
+            type="date"
+            {...getFieldProps('date')}
+            error={Boolean(touched.date && errors.date)}
+            helperText={touched.date && errors.date}
+          />
+    
           <LoadingButton
             fullWidth
             size="large"
@@ -277,7 +167,7 @@ export default function StatsForm() {
             variant="contained"
             loading={isSubmitting}
           >
-            Add User
+            Add Stats
           </LoadingButton>
         </Stack>
       </Form>
