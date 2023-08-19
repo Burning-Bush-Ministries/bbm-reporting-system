@@ -1,12 +1,12 @@
 import { Link as RouterLink } from 'react-router-dom';
 // material
 import { styled } from '@mui/material/styles';
-import { Box, Card, Container, Link, Typography, Button } from '@mui/material';
+import { Box, Card, Link, Container, Typography } from '@mui/material';
 // layouts
 import AuthLayout from '../layouts/AuthLayout';
 // components
 import Page from '../components/Page';
-import { StatsForm } from '../sections/authentication/register';
+import { VisitorForm } from '../sections/authentication/register';
 
 // ----------------------------------------------------------------------
 
@@ -37,33 +37,33 @@ const ContentStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function StatsRegister() {
+export default function AddUser() {
   return (
-    <RootStyle title="Stats | BBM">
+    <RootStyle title="Add Person | BBM">
       <AuthLayout>
-        <Link underline="none" variant="subtitle2" component={RouterLink} to="/dashboard/stats">
-          back to the stats list
+        <Link underline="none" variant="subtitle2" component={RouterLink} to="/dashboard/user">
+          back to members lists
         </Link>
       </AuthLayout>
 
       <SectionStyle sx={{ display: { xs: 'none', md: 'flex' } }}>
         <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-          Be thou diligent to know the state of thy flocks, And look well to thy herds.
+          Be deligent to know the state of the flock
         </Typography>
-        <img alt="register" src="/static/illustrations/stats.png" />
+        <img alt="register" src="/static/illustrations/illustration_register.png" />
       </SectionStyle>
 
       <Container>
         <ContentStyle>
           <Box sx={{ mb: 5 }}>
             <Typography variant="h4" gutterBottom>
-              Add Stats details.
+              Welcome into the BBM family, leader.
             </Typography>
             <Typography sx={{ color: 'text.secondary' }}>
-              Add this week's Sunday service stats
+              Personal details, the church and your ministry.
             </Typography>
           </Box>
-          <StatsForm />
+          <VisitorForm />
         </ContentStyle>
       </Container>
     </RootStyle>

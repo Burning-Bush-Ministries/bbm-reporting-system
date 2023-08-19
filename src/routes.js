@@ -16,7 +16,7 @@ import Church from './pages/Church';
 import StatsPage from './pages/StatsPage';
 import ChurchRegister from './pages/ChurchRegister';
 import StatsRegister from './pages/StatsRegister';
-import StatsForm from './sections/authentication/register/index';
+import AddUser from './pages/AddUser';
 
 // ----------------------------------------------------------------------
 
@@ -44,6 +44,7 @@ export default function Router() {
         { path: 'login', element: <Login /> },
         { path: 'gyser', element: <Gyser /> },
         { path: 'register', element: <Register /> },
+        { path: 'add-user', element: <AddUser /> },
         { path: 'add-stats', element: <StatsRegister /> },
         { path: 'add-church', element: <ChurchRegister /> },
         { path: '404', element: <NotFound /> },

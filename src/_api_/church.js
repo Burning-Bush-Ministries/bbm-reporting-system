@@ -2,10 +2,12 @@
 
 // ----------------------------------------------------------------------
 const axios = require('axios');
+const dev_BASE_URL = 'http://localhost:3000/';
+const BASE_URL = 'https://bbmapi20230807123059.azurewebsites.net/api/';
 
 const getChurch = async () => {
   try {
-    const response = await axios.get('https://bbmapi20230807123059.azurewebsites.net/api/Church');
+    const response = await axios.get(BASE_URL + 'Church');
     const resp = await response;
     console.log(resp.data);
     const res = [...resp.data].map((_, index) => ({

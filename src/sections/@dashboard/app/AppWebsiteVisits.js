@@ -11,21 +11,21 @@ const CHART_DATA = [
   {
     name: 'Visitors',
     type: 'column',
-    data: [23, 11, 22, 27, 13, 22, 0, 0, 0, 0, 0]
+    data: [0, 11, 0, 0, 13, 22, 0, 0, 0, 0, 0]
   },
   {
     name: 'Attendance',
     type: 'area',
-    data: [44, 55, 41, 67, 22, 43, 0, 0, 0, 0, 0]
+    data: [0, 55, 0, 0, 22, 43, 0, 0, 0, 0, 0]
   },
   {
     name: 'Souls',
     type: 'line',
-    data: [30, 25, 36, 30, 45, 35, 64, 0, 0, 0, 0]
+    data: [0, 25, 0, 0, 45, 35, 64, 0, 0, 0, 0]
   }
 ];
 
-export default function AppWebsiteVisits() {
+export default function AppWebsiteVisits({ StatsList = [] }) {
   const chartOptions = merge(BaseOptionChart(), {
     stroke: { width: [0, 2, 3] },
     plotOptions: { bar: { columnWidth: '11%', borderRadius: 4 } },

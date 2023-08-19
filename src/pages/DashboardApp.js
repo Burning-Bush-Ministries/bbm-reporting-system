@@ -1,5 +1,5 @@
 // material
-import { Box, Grid, Container, Typography } from '@mui/material';
+import { Box, Grid, Container, Typography, Select, MenuItem } from '@mui/material';
 // components
 import Page from '../components/Page';
 import {
@@ -20,13 +20,21 @@ export default function DashboardApp() {
   console.log('Stats List: ' && STATSLIST[0].adult);
   console.log('Array ' && { STATSLIST });
   const lastRow = STATSLIST.length - 1;
-
   return (
     <Page title="Dashboard | BBM">
       <Container maxWidth="xl">
         <Box sx={{ pb: 5 }}>
           <Typography variant="h4">
-            Hi, Welcome back. Stats Date: {STATSLIST[lastRow].date.substring(0, 10)}
+            Hi, Welcome back. Stats Date: {STATSLIST[lastRow].date.substring(0, 10)} Church:{' '}
+            {STATSLIST[lastRow].churchId}
+            {/* <Select>
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
+            </Select> */}
           </Typography>
         </Box>
         <Grid container spacing={2}>
@@ -50,7 +58,7 @@ export default function DashboardApp() {
           </Grid>
 
           <Grid item xs={12} md={6} lg={8}>
-            <AppWebsiteVisits />
+            <AppWebsiteVisits StatsList={STATSLIST} />
           </Grid>
 
           <Grid item xs={12} md={6} lg={4}>

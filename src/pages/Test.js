@@ -189,7 +189,7 @@ class User extends Component {
             <Button
               variant="contained"
               component={RouterLink}
-              to="/register"
+              to="/add-user"
               startIcon={<Iconify icon="eva:plus-fill" />}
             >
               New User
