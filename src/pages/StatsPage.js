@@ -74,7 +74,6 @@ function applySortFilter(array, comparator, query) {
 }
 
 class StatsPage extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -83,7 +82,8 @@ class StatsPage extends Component {
       selected: [],
       orderBy: 'name',
       filterName: '',
-      rowsPerPage: 5
+      rowsPerPage: 10,
+      page: 0
     };
     this.forceUpdate();
     this.displayData = this.displayData.bind(this);
@@ -91,8 +91,8 @@ class StatsPage extends Component {
   }
 
   componentDidUpdate() {
-    this.handleChangeRowsPerPage
-    this.render()
+    this.handleChangeRowsPerPage;
+    this.render();
   }
 
   alertName = () => {
@@ -118,7 +118,6 @@ class StatsPage extends Component {
     }
     setSelected([]);
   };
-
 
   handleClick = (event, name) => {
     const { selected } = this.state;
@@ -172,7 +171,6 @@ class StatsPage extends Component {
     this.forceUpdate();
   };
 
-
   render() {
     const { page, order, selected, orderBy, filterName, rowsPerPage } = this.state;
 
@@ -217,17 +215,8 @@ class StatsPage extends Component {
                     {this.filteredUsers(STATSLIST)
                       ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                       .map((row) => {
-                        const {
-                          id,
-                          churchId,
-                          adult,
-                          car,
-                          fk,
-                          saved,
-                          offering,
-                          visitors,
-                          date
-                        } = row;
+                        const { id, churchId, adult, car, fk, saved, offering, visitors, date } =
+                          row;
                         const isItemSelected = selected.indexOf(name) !== -1;
 
                         return (
@@ -245,7 +234,7 @@ class StatsPage extends Component {
                                 onChange={(event) => this.handleClick(event, name)}
                               />
                             </TableCell>
-                            <TableCell component="th" scope="row" padding="none">
+                            <TableCell component="th" scope="row" padding="none" key={id}>
                               <Stack direction="row" alignItems="center" spacing={2}>
                                 <Typography variant="subtitle2" noWrap>
                                   {churchId}
@@ -258,20 +247,21 @@ class StatsPage extends Component {
                             <TableCell align="left">{saved}</TableCell>
                             <TableCell align="left">{offering}</TableCell>
                             <TableCell align="left">{visitors}</TableCell>
-                            <TableCell align="left">{date}</TableCell>
+                            <TableCell align="left">{date.substring(0, 10)}</TableCell>
                             <TableCell align="right">
                               <UserMoreMenu />
                             </TableCell>
                           </TableRow>
                         );
-                      })} {console.log('Inside: => ', STATSLIST)}
+                      })}{' '}
+                    {console.log('Inside: => ', STATSLIST)}
                     {this.emptyRows(STATSLIST) > 0 && (
                       <TableRow style={{ height: 53 * this.emptyRows(STATSLIST) }}>
                         <TableCell colSpan={6} />
                       </TableRow>
                     )}
                   </TableBody>
-                 
+
                   {this.isUserNotFound && (
                     <TableBody>
                       <TableRow>

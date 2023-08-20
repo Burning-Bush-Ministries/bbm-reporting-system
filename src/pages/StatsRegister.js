@@ -41,7 +41,7 @@ export default function StatsRegister() {
   return (
     <RootStyle title="Stats | BBM">
       <AuthLayout>
-        <Link underline="none" variant="subtitle2" component={RouterLink} to="/dashboard/stats">
+        <Link underline="none" variant="subtitle2" component={RouterLink} to="/app/stats">
           back to the stats list
         </Link>
       </AuthLayout>

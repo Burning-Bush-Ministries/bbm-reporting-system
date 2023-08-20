@@ -15,7 +15,7 @@ const MENU_OPTIONS = [
   {
     label: 'Home',
     icon: 'eva:home-fill',
-    linkTo: '/dashboard'
+    linkTo: '/app/dashboard'
   },
   {
     label: 'Profile',

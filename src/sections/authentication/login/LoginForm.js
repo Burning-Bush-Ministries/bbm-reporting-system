@@ -77,7 +77,7 @@ export default function LoginForm() {
       .then(function(response) {
         console.log('Authenticated',response);
         handleIncorrectPasswword(false);
-        navigate('/dashboard', { replace: true });
+        navigate('/app/dashboard', { replace: true });
 
       }).catch(function(error) {
         handleIncorrectPasswword(true);

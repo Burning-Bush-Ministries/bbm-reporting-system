@@ -41,7 +41,7 @@ export default function AddUser() {
   return (
     <RootStyle title="Add Person | BBM">
       <AuthLayout>
-        <Link underline="none" variant="subtitle2" component={RouterLink} to="/dashboard/user">
+        <Link underline="none" variant="subtitle2" component={RouterLink} to="/app/user">
           back to members lists
         </Link>
       </AuthLayout>

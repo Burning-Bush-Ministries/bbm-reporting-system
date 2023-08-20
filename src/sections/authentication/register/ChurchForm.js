@@ -48,7 +48,7 @@ export default function StatsForm() {
     });
     console.log(response)
       if(response){
-        navigate('/dashboard', { replace: true });
+        navigate('/app/dashboard', { replace: true });
       }
       else{
         navigate('/add-church', { replace: true });

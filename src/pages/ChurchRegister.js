@@ -41,7 +41,7 @@ export default function ChurchRegister() {
   return (
     <RootStyle title="Register | BBM">
       <AuthLayout>
-        <Link underline="none" variant="subtitle2" component={RouterLink} to="/dashboard/church">
+        <Link underline="none" variant="subtitle2" component={RouterLink} to="/app/church">
           back to list of churches
         </Link>
       </AuthLayout>

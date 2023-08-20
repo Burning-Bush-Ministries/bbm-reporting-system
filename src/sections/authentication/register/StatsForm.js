@@ -6,10 +6,7 @@ import { styled } from '@mui/material/styles';
 import { useFormik, Form, FormikProvider } from 'formik';
 import { useNavigate } from 'react-router-dom';
 // material
-import {
-  Stack,
-  TextField
-} from '@mui/material';
+import { Stack, TextField } from '@mui/material';
 // import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { LoadingButton } from '@mui/lab';
 import _ from 'lodash';
@@ -23,16 +20,13 @@ export default function StatsForm() {
 
   const headers = {
     'Content-Type': 'application/json;charset=UTF-8',
-    "Access-Control-Allow-Origin": "*",
+    'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
     'Access-Control-Allow-Headers': '*'
-};
+  };
 
   const RegisterSchema = Yup.object().shape({
-    branch: Yup.string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('Branch name required'),
+    branch: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Branch name required'),
     churchName: Yup.string().required('Church name is required'),
     city: Yup.string().required('City is required'),
     location: Yup.string().required('Location is required'),
@@ -42,48 +36,50 @@ export default function StatsForm() {
 
   const addChurch = async (statsObject) => {
     try {
-      const response = await axios.post('https://bbmapi20230807123059.azurewebsites.net/api/Stats',statsObject,{
-        mode: 'cors',
-        headers: headers
-    });
-    console.log(response)
-      if(response){
-        navigate('/dashboard', { replace: true });
-      }
-      else{
+      const response = await axios.post(
+        'https://bbmapi20230807123059.azurewebsites.net/api/Stats',
+        statsObject,
+        {
+          mode: 'cors',
+          headers: headers
+        }
+      );
+      console.log(response);
+      if (response) {
+        navigate('/app/dashboard', { replace: true });
+      } else {
         navigate('/add-church', { replace: true });
       }
-    
     } catch (err) {
       console.log(err);
       throw err;
     }
-  }
+  };
 
   const formik = useFormik({
     initialValues: {
-        adult: 0,
-        car: 0,
-        fk: 0,
-        saved: 0,
-        offering: 0.0,
-        visitors: 0,
-        date: '2023-08-06',
-        churchId: 1
+      adult: 0,
+      car: 0,
+      fk: 0,
+      saved: 0,
+      offering: 0.0,
+      visitors: 0,
+      date: '2023-08-06',
+      churchId: 1
     },
     validationSchema: RegisterSchema,
     onSubmit: () => {
       const registrationObject = {
-        adult: {...getFieldProps('adult')}.value,
-        car: {...getFieldProps('car')}.value,
-        fk: {...getFieldProps('fk')}.value,
-        saved: {...getFieldProps('saved')}.value,
-        offering: {...getFieldProps('offering')}.value,
-        visitors: {...getFieldProps('visitors')}.value,
-        date: {...getFieldProps('date')}.value,
+        adult: { ...getFieldProps('adult') }.value,
+        car: { ...getFieldProps('car') }.value,
+        fk: { ...getFieldProps('fk') }.value,
+        saved: { ...getFieldProps('saved') }.value,
+        offering: { ...getFieldProps('offering') }.value,
+        visitors: { ...getFieldProps('visitors') }.value,
+        date: { ...getFieldProps('date') }.value,
         churchId: 1
       };
-      console.log("Values: ", registrationObject);
+      console.log('Values: ', registrationObject);
       addChurch(registrationObject);
     }
   });
@@ -159,7 +155,7 @@ export default function StatsForm() {
             error={Boolean(touched.date && errors.date)}
             helperText={touched.date && errors.date}
           />
-    
+
           <LoadingButton
             fullWidth
             size="large"

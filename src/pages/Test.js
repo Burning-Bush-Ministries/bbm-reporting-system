@@ -86,7 +86,8 @@ class User extends Component {
       selected: [],
       orderBy: 'name',
       filterName: '',
-      rowsPerPage: 5
+      rowsPerPage: 10,
+      page: 0
     };
     this.forceUpdate();
     this.displayData = this.displayData.bind(this);
@@ -249,7 +250,7 @@ class User extends Component {
                                 onChange={(event) => this.handleClick(event, name)}
                               />
                             </TableCell>
-                            <TableCell component="th" scope="row" padding="none">
+                            <TableCell component="th" scope="row" padding="none" key={id}>
                               <Stack direction="row" alignItems="center" spacing={2}>
                                 {/* <Avatar alt={name} src={avatarUrl} /> */}
                                 <Typography variant="subtitle2" noWrap>

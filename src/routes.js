@@ -23,10 +23,10 @@ import AddUser from './pages/AddUser';
 export default function Router() {
   return useRoutes([
     {
-      path: '/dashboard',
+      path: '/app',
       element: <DashboardLayout />,
       children: [
-        { path: '', element: <DashboardApp /> },
+        { path: 'dashboard', element: <DashboardApp /> },
         { path: 'user', element: <User /> },
         { path: 'church', element: <Church /> },
         { path: 'stats', element: <StatsPage /> },

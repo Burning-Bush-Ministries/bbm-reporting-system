@@ -60,7 +60,7 @@ export default function RegisterForm() {
     });
     console.log(response)
       if(response){
-        navigate('/dashboard', { replace: true });
+        navigate('/app/dashboard', { replace: true });
       }
       else{
         navigate('/register', { replace: true });

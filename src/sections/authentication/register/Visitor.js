@@ -9,8 +9,6 @@ import { useNavigate } from 'react-router-dom';
 import {
   Stack,
   TextField,
-  IconButton,
-  InputAdornment,
   Radio,
   RadioGroup,
   FormControlLabel,
@@ -22,12 +20,10 @@ import {
 import { LoadingButton } from '@mui/lab';
 import _ from 'lodash';
 // component
-import Iconify from '../../../components/Iconify';
 // ----------------------------------------------------------------------
 
 export default function VisitorForm() {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
   const axios = require('axios');
 
   const headers = {
@@ -60,10 +56,10 @@ export default function VisitorForm() {
     });
     console.log(response)
       if(response){
-        navigate('/dashboard', { replace: true });
+        navigate('/app/dashboard', { replace: true });
       }
       else{
-        navigate('/register', { replace: true });
+        navigate('/add-visitor', { replace: true });
       }
     
     } catch (err) {
@@ -77,10 +73,10 @@ export default function VisitorForm() {
       firstName: '',
       lastName: '',
       address: '',
-      maritalStatus: 0,
+      maritalStatus: '',
       contactNo: '',
       gender: 0,
-      churchId: '0',
+      churchId: 1,
       comments:''
     },
     validationSchema: RegisterSchema,
@@ -92,7 +88,6 @@ export default function VisitorForm() {
         maritalStatus: {...getFieldProps('maritalStatus')}.value,
         contactNo: {...getFieldProps('contactNo')}.value,
         gender:  {...getFieldProps('gender')}.value,
-        churchId: 1,
         comments:  {...getFieldProps('comments')}.value
       };
       console.log("Values: ", registrationObject);
@@ -157,9 +152,9 @@ export default function VisitorForm() {
             <TextField
               fullWidth
               label="Church"
-              {...getFieldProps('church')}
-              error={Boolean(touched.church && errors.church)}
-              helperText={touched.church && errors.church}
+              {...getFieldProps('churchId')}
+              error={Boolean(touched.churchId && errors.churchId)}
+              helperText={touched.churchId && errors.churchId}
             />
 
             <TextField
@@ -191,7 +186,7 @@ export default function VisitorForm() {
             variant="contained"
             loading={isSubmitting}
           >
-            Add User
+            Add Member
           </LoadingButton>
         </Stack>
       </Form>
