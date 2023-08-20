@@ -28,69 +28,71 @@ export default function VisitorForm() {
 
   const headers = {
     'Content-Type': 'application/json;charset=UTF-8',
-    "Access-Control-Allow-Origin": "*",
+    'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
     'Access-Control-Allow-Headers': '*'
-};
+  };
 
   const RegisterSchema = Yup.object().shape({
-    firstName: Yup.string()
+    name: Yup.string()
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
       .required('First name required'),
-    lastName: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Last name required'),
-    email: Yup.string().email('Email must be a valid email address').required('Email is required'),
-    password: Yup.string().required('Password is required'),
-    company: Yup.string().required('Company is required'),
-    tagid: Yup.string().required('TagID is required'),
-    ethnicity: Yup.string().required('Ethnicity is required'),
-    username: Yup.string().required('Username is required'),
+    surname: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Last name required'),
+    address: Yup.string().required('Address is required'),
+    maritalStatus: Yup.string().required('Marital status is required'),
+    contactNumber: Yup.string().required('Contact number is required'),
+    churchId: Yup.string().required('ChurchId is required'),
     gender: Yup.string().required('Gender is required')
   });
 
   const addUsers = async (userObject) => {
     try {
-      const response = await axios.post('https://bbmapi20230807123059.azurewebsites.net/api/Person',userObject,{
-        mode: 'cors',
-        headers: headers
-    });
-    console.log(response)
-      if(response){
+      const response = await axios.post(
+        'https://bbmapi20230807123059.azurewebsites.net/api/Person',
+        userObject,
+        {
+          mode: 'cors',
+          headers: headers
+        }
+      );
+      console.log(response);
+      if (response) {
         navigate('/app/dashboard', { replace: true });
-      }
-      else{
+      } else {
         navigate('/add-visitor', { replace: true });
       }
-    
     } catch (err) {
       console.log(err);
       throw err;
     }
-  }
+  };
 
   const formik = useFormik({
     initialValues: {
-      firstName: '',
-      lastName: '',
+      name: '',
+      surname: '',
       address: '',
       maritalStatus: '',
-      contactNo: '',
+      contactNumber: '',
       gender: 0,
       churchId: 1,
-      comments:''
+      comments: ''
     },
     validationSchema: RegisterSchema,
     onSubmit: () => {
       const registrationObject = {
-        firstName: {...getFieldProps('firstName')}.value,
-        lastName: {...getFieldProps('lastName')}.value,
-        address: {...getFieldProps('address')}.value,
-        maritalStatus: {...getFieldProps('maritalStatus')}.value,
-        contactNo: {...getFieldProps('contactNo')}.value,
-        gender:  {...getFieldProps('gender')}.value,
-        comments:  {...getFieldProps('comments')}.value
+        name: { ...getFieldProps('name') }.value,
+        surname: { ...getFieldProps('surname') }.value,
+        address: { ...getFieldProps('address') }.value,
+        maritalStatus: { ...getFieldProps('maritalStatus') }.value,
+        contactNumber: { ...getFieldProps('contactNumber') }.value,
+        gender: parseInt({ ...getFieldProps('gender') }.value),
+        comments: { ...getFieldProps('comments') }.value,
+        churchId: 1
+
       };
-      console.log("Values: ", registrationObject);
+      console.log('Values: ', registrationObject);
       addUsers(registrationObject);
     }
   });
@@ -108,27 +110,27 @@ export default function VisitorForm() {
             <TextField
               fullWidth
               label="First name"
-              {...getFieldProps('firstName')}
-              error={Boolean(touched.firstName && errors.firstName)}
-              helperText={touched.firstName && errors.firstName}
+              {...getFieldProps('name')}
+              error={Boolean(touched.name && errors.name)}
+              helperText={touched.name && errors.name}
             />
 
             <TextField
               fullWidth
               label="Last name"
-              {...getFieldProps('lastName')}
-              error={Boolean(touched.lastName && errors.lastName)}
-              helperText={touched.lastName && errors.lastName}
+              {...getFieldProps('surname')}
+              error={Boolean(touched.surname && errors.surname)}
+              helperText={touched.surname && errors.surname}
             />
           </Stack>
 
           <TextField
             fullWidth
-            autoComplete="contactNo"
+            autoComplete="contactNumber"
             label="Contact Number"
-            {...getFieldProps('contactNo')}
-            error={Boolean(touched.contactNo && errors.contactNo)}
-            helperText={touched.contactNo && errors.contactNo}
+            {...getFieldProps('contactNumber')}
+            error={Boolean(touched.contactNumber && errors.contactNumber)}
+            helperText={touched.contactNumber && errors.contactNumber}
           />
 
           <TextField
@@ -174,8 +176,8 @@ export default function VisitorForm() {
               name="radio-buttons-group"
               {...getFieldProps('gender')}
             >
-              <FormControlLabel value="female" control={<Radio />} label="Female" />
-              <FormControlLabel value="male" control={<Radio />} label="Male" />
+              <FormControlLabel value='0' control={<Radio />} label="Female" />
+              <FormControlLabel value='1' control={<Radio />} label="Male" />
             </RadioGroup>
           </FormControl>
 
