@@ -33,6 +33,8 @@ const TABLE_HEAD = [
   { id: 'adult', label: 'No. Adults', alignRight: false },
   { id: 'car', label: 'Cars', alignRight: false },
   { id: 'fk', label: 'Faith Kids', alignRight: false },
+  { id: 'ck', label: 'Covenant Keepers', alignRight: false },
+  { id: 'aow', label: 'Army Of Women', alignRight: false },
   { id: 'saved', label: 'Saved', alignRight: false },
   { id: 'offering', label: 'Offering', alignRight: false },
   { id: 'visitors', label: 'Visitors', alignRight: false },
@@ -215,7 +217,7 @@ class StatsPage extends Component {
                     {this.filteredUsers(STATSLIST)
                       ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                       .map((row) => {
-                        const { id, churchId, adult, car, fk, saved, offering, visitors, date } =
+                        const { id, churchId, adult, car, fk, ck, aow, saved, offering, visitors, date } =
                           row;
                         const isItemSelected = selected.indexOf(name) !== -1;
 
@@ -244,6 +246,8 @@ class StatsPage extends Component {
                             <TableCell align="left">{adult}</TableCell>
                             <TableCell align="left">{car}</TableCell>
                             <TableCell align="left">{fk}</TableCell>
+                            <TableCell align="left">{ck}</TableCell>
+                            <TableCell align="left">{aow}</TableCell>
                             <TableCell align="left">{saved}</TableCell>
                             <TableCell align="left">{offering}</TableCell>
                             <TableCell align="left">{visitors}</TableCell>
