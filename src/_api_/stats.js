@@ -13,6 +13,8 @@ const getStats = async () => {
       adult: _.adult,
       car: _.car,
       fk: _.fk,
+      ck: _.ck,
+      aow: _.aow,
       saved: _.saved,
       offering: _.offering,
       visitors: _.visitors,

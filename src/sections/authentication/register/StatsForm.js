@@ -26,12 +26,17 @@ export default function StatsForm() {
   };
 
   const RegisterSchema = Yup.object().shape({
-    branch: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Branch name required'),
-    churchName: Yup.string().required('Church name is required'),
-    city: Yup.string().required('City is required'),
-    location: Yup.string().required('Location is required'),
-    province: Yup.string().required('Province is required'),
-    region: Yup.string().required('Region is required')
+    adult: Yup.string(),
+    car: Yup.string(),
+    fk: Yup.string(),
+    saved: Yup.string(),
+    offering: Yup.string(),
+    visitors: Yup.string(),
+    churchId: Yup.string(),
+    visitors: Yup.string(),
+    date: Yup.string(),
+    ck: Yup.string(),
+    aow: Yup.string()
   });
 
   const addChurch = async (statsObject) => {
@@ -65,6 +70,8 @@ export default function StatsForm() {
       offering: 0.0,
       visitors: 0,
       date: '2023-08-06',
+      ck: 0,
+      aow: 0,
       churchId: 1
     },
     validationSchema: RegisterSchema,
@@ -77,6 +84,8 @@ export default function StatsForm() {
         offering: { ...getFieldProps('offering') }.value,
         visitors: { ...getFieldProps('visitors') }.value,
         date: { ...getFieldProps('date') }.value,
+        ck: { ...getFieldProps('ck') }.value,
+        aow: { ...getFieldProps('aow') }.value,
         churchId: 1
       };
       console.log('Values: ', registrationObject);
@@ -146,6 +155,25 @@ export default function StatsForm() {
               helperText={touched.visitor && errors.visitor}
             />
           </Stack>
+
+          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+            <TextField
+              fullWidth
+              label="Covenant Keepers"
+              {...getFieldProps('ck')}
+              error={Boolean(touched.ck && errors.ck)}
+              helperText={touched.ck && errors.ck}
+            />
+
+            <TextField
+              fullWidth
+              label="Army of Women"
+              {...getFieldProps('aow')}
+              error={Boolean(touched.aow && errors.aow)}
+              helperText={touched.aow && errors.aow}
+            />
+          </Stack>
+
 
           <TextField
             fullWidth
