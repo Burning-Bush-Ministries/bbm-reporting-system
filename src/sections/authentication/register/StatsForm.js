@@ -33,7 +33,6 @@ export default function StatsForm() {
     offering: Yup.string(),
     visitors: Yup.string(),
     churchId: Yup.string(),
-    visitors: Yup.string(),
     date: Yup.string(),
     ck: Yup.string(),
     aow: Yup.string()
@@ -150,9 +149,9 @@ export default function StatsForm() {
             <TextField
               fullWidth
               label="Visitor"
-              {...getFieldProps('visitor')}
-              error={Boolean(touched.visitor && errors.visitor)}
-              helperText={touched.visitor && errors.visitor}
+              {...getFieldProps('visitors')}
+              error={Boolean(touched.visitors && errors.visitors)}
+              helperText={touched.visitors && errors.visitors}
             />
           </Stack>
 
