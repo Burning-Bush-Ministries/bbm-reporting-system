@@ -35,7 +35,10 @@ const TABLE_HEAD = [
   { id: 'city', label: 'City', alignRight: false },
   { id: 'region', label: 'Region', alignRight: false },
   { id: 'pastor', label: 'Pastor', alignRight: false },
-  { id: 'location', label: 'Location', alignRight: false },
+  { id: 'location', label: 'Location', alignRight: false },  
+  { id: 'ministry', label: 'Ministry', alignRight: false },
+  { id: 'cellLeader', label: 'Cell Leader', alignRight: false },
+  { id: 'cellLocation', label: 'Cell Location', alignRight: false },
   { id: '' }
 ];
 

@@ -22,7 +22,10 @@ const getUsers = async () => {
       churchId: _.churchId,
       gender: _.gender,
       username: _.username,
-      maritalStatus: _.maritalStatus
+      maritalStatus: _.maritalStatus,
+      cellLeader: _.cellLeader,
+      cellLocation: _.cellLocationl,
+      ministry: _.ministry
     }));
     return resp.data;
   } catch (err) {

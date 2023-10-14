@@ -14,7 +14,10 @@ var userObject = {
   gender: 'string',
   contactNumber: 'string',
   address: 'string',
-  maritalStatus: 'string'
+  maritalStatus: 'string',
+  cellLeader: 'string',
+  cellLocation: 'string',
+  ministry: 'string'
 };
 
 const addUsers = async ({ userObject }) => {

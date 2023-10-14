@@ -77,7 +77,9 @@ export default function VisitorForm() {
       contactNumber: '',
       gender: 0,
       churchId: 1,
-      comments: ''
+      comments: '',
+      cellLocation:'',
+      cellLeader:''
     },
     validationSchema: RegisterSchema,
     onSubmit: () => {
@@ -89,8 +91,9 @@ export default function VisitorForm() {
         contactNumber: { ...getFieldProps('contactNumber') }.value,
         gender: parseInt({ ...getFieldProps('gender') }.value),
         comments: { ...getFieldProps('comments') }.value,
-        churchId: 1
-
+        churchId: 1,
+        cellLocation: {...getFieldProps('cellLocation')}.value,
+        cellLeader: {...getFieldProps('cellLeader')}.value,
       };
       console.log('Values: ', registrationObject);
       addUsers(registrationObject);
@@ -165,6 +168,24 @@ export default function VisitorForm() {
               {...getFieldProps('maritalStatus')}
               error={Boolean(touched.maritalStatus && errors.maritalStatus)}
               helperText={touched.maritalStatus && errors.maritalStatus}
+            />
+          </Stack>
+
+          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+            <TextField
+              fullWidth
+              label="Cell Leader"
+              {...getFieldProps('cellLeader')}
+              error={Boolean(touched.cellLeader && errors.cellLeader)}
+              helperText={touched.cellLeader && errors.cellLeader}
+            />
+
+            <TextField
+              fullWidth
+              label="Cell Location"
+              {...getFieldProps('cellLocation')}
+              error={Boolean(touched.cellLocation && errors.cellLocation)}
+              helperText={touched.cellLocation && errors.cellLocation}
             />
           </Stack>
 

@@ -38,7 +38,11 @@ const TABLE_HEAD = [
   { id: 'church', label: 'Church', alignRight: false },
   // { id: 'email', label: 'Email', alignRight: false },
   { id: 'maritalStatus', label: 'Marital Status', alignRight: false },
-  { id: 'gender', label: 'Gender', alignRight: false },
+  { id: 'gender', label: 'Gender', alignRight: false },  
+  { id: 'ministry', label: 'Ministry', alignRight: false },
+  { id: 'cellLeader', label: 'Cell Leader', alignRight: false },
+  { id: 'cellLocation', label: 'Cell Location', alignRight: false },
+
   { id: '' }
 ];
 
@@ -231,7 +235,10 @@ class User extends Component {
                           // email,
                           maritalStatus,
                           gender,
-                          status
+                          status,
+                          ministry,
+                          cellLeader,
+                          cellLocation
                         } = row;
                         const isItemSelected = selected.indexOf(name) !== -1;
 
@@ -269,6 +276,9 @@ class User extends Component {
                             {/* <TableCell align="left">{email}</TableCell> */}
                             <TableCell align="left">{maritalStatus}</TableCell>
                             <TableCell align="left">{gender}</TableCell>
+                            <TableCell align="left">{ministry}</TableCell>
+                            <TableCell align="left">{cellLeader}</TableCell>
+                            <TableCell align="left">{cellLocation}</TableCell>
 
                             <TableCell align="right">
                               <UserMoreMenu />

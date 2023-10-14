@@ -90,7 +90,9 @@ export default function RegisterForm() {
       username: '',
       personId: '0',
       churchId: '0',
-      comments:''
+      comments:'',
+      cellLocation:'',
+      cellLeader:''
     },
     validationSchema: RegisterSchema,
     onSubmit: () => {
@@ -113,7 +115,10 @@ export default function RegisterForm() {
         username: {...getFieldProps('ministry')}.value,
         personId: '0000000',
         churchId: '999999',
-        comments: ''
+        comments: '',
+        cellLocation: {...getFieldProps('cellLocation')}.value,
+        cellLeader: {...getFieldProps('cellLeader')}.value,
+
       };
       console.log("Values: ", registrationObject);
       addUsers(registrationObject);
@@ -243,6 +248,24 @@ export default function RegisterForm() {
               {...getFieldProps('office')}
               error={Boolean(touched.office && errors.office)}
               helperText={touched.office && errors.office}
+            />
+          </Stack>
+
+          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+            <TextField
+              fullWidth
+              label="Cell Leader"
+              {...getFieldProps('cellLeader')}
+              error={Boolean(touched.cellLeader && errors.cellLeader)}
+              helperText={touched.cellLeader && errors.cellLeader}
+            />
+
+            <TextField
+              fullWidth
+              label="Cell Location"
+              {...getFieldProps('cellLocation')}
+              error={Boolean(touched.cellLocation && errors.cellLocation)}
+              helperText={touched.cellLocation && errors.cellLocation}
             />
           </Stack>
 
