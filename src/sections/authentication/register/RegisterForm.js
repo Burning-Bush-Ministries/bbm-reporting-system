@@ -54,7 +54,7 @@ export default function RegisterForm() {
 
   const addUsers = async (userObject) => {
     try {
-      const response = await axios.post('https://bbmapi20230807123059.azurewebsites.net/api/Person',userObject,{
+      const response = await axios.post('https://bbm-bulk-api-gct.vercel.app/api/Person',userObject,{
         mode: 'cors',
         headers: headers
     });
