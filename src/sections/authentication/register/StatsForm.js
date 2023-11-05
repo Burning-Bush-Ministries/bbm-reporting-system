@@ -41,7 +41,7 @@ export default function StatsForm() {
   const addChurch = async (statsObject) => {
     try {
       const response = await axios.post(
-        'https://bbmapi20230807123059.azurewebsites.net/api/Stats',
+        'https://bbm-bulk-api-gct.vercel.app/api/Stats',
         statsObject,
         {
           mode: 'cors',

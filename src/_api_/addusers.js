@@ -2,7 +2,10 @@
 
 // ----------------------------------------------------------------------
 const axios = require('axios');
-const BASE_URL = 'https://bbmapi20230807123059.azurewebsites.net/api/';
+// const BASE_URL = 'https://bbmapi20230807123059.azurewebsites.net/api/';
+const BASE_URL = 'https://bbm-bulk-api-gct.vercel.app/api/';
+
+https://localhost:7193
 
 var userObject = {
   name: 'string',
