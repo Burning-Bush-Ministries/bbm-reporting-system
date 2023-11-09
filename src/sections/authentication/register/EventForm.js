@@ -72,7 +72,7 @@ export default function EventForm() {
     validationSchema: RegisterSchema,
     onSubmit: () => {
       const registrationObject = {
-        Name: { ...getFieldProps('Name') }.value,
+        name: { ...getFieldProps('name') }.value,
         time: { ...getFieldProps('time') }.value,
         dayFrom: { ...getFieldProps('dayFrom') }.value,
         dayTo: { ...getFieldProps('dayTo') }.value,
