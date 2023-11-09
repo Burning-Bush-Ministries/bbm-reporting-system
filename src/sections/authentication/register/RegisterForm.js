@@ -23,6 +23,7 @@ import { LoadingButton } from '@mui/lab';
 import _ from 'lodash';
 // component
 import Iconify from '../../../components/Iconify';
+import { BASE_URL } from 'src/utils/constant';
 // ----------------------------------------------------------------------
 
 export default function RegisterForm() {
@@ -54,7 +55,7 @@ export default function RegisterForm() {
 
   const addUsers = async (userObject) => {
     try {
-      const response = await axios.post('https://bbm-bulk-api-gct.vercel.app/api/Person',userObject,{
+      const response = await axios.post(BASE_URL + 'Person',userObject,{
         mode: 'cors',
         headers: headers
     });

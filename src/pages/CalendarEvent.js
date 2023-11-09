@@ -31,7 +31,7 @@ import CALENDARLIST from '../_api_/calendar';
 const TABLE_HEAD = [
   { id: 'id', label: 'No.', alignRight: false },
   { id: 'name', label: 'Event Name', alignRight: false },
-  { id: 'day', label: 'Time', alignRight: false },
+  { id: 'time', label: 'Time', alignRight: false },
   { id: 'dayFrom', label: 'Start Day', alignRight: false },
   { id: 'dayTo', label: 'End Day', alignRight: false },
   { id: 'month', label: 'Month', alignRight: false },
@@ -185,7 +185,7 @@ class CalendarPage extends Component {
             <Button
               variant="contained"
               component={RouterLink}
-              to="/add-calendar"
+              to="/add-event"
               startIcon={<Iconify icon="eva:plus-fill" />}
             >
               Add New Event
@@ -216,7 +216,7 @@ class CalendarPage extends Component {
                     { CALENDARLIST.length>0 ? this.filteredUsers(CALENDARLIST)
                       ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                       .map((row) => {
-                        const { id, name, day, dayFrom, dayTo, month, year, department, region } =
+                        const { id, name, time, dayFrom, dayTo, month, year, department, region } =
                           row;
                         const isItemSelected = selected.indexOf(name) !== -1;
 
@@ -243,7 +243,7 @@ class CalendarPage extends Component {
                               </Stack>
                             </TableCell>
                             <TableCell align="left">{name}</TableCell>
-                            <TableCell align="left">{day}</TableCell>
+                            <TableCell align="left">{time}</TableCell>
                             <TableCell align="left">{dayFrom}</TableCell>
                             <TableCell align="left">{dayTo}</TableCell>
                             <TableCell align="left">{month}</TableCell>

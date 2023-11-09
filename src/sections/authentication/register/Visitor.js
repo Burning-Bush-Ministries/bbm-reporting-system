@@ -19,6 +19,7 @@ import {
 // import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { LoadingButton } from '@mui/lab';
 import _ from 'lodash';
+import { BASE_URL } from 'src/utils/constant';
 // component
 // ----------------------------------------------------------------------
 
@@ -49,7 +50,7 @@ export default function VisitorForm() {
   const addUsers = async (userObject) => {
     try {
       const response = await axios.post(
-        'https://bbm-bulk-api-gct.vercel.app/api/Person',
+        BASE_URL + 'Person',
         userObject,
         {
           mode: 'cors',

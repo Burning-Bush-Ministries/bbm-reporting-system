@@ -13,7 +13,7 @@ import {
 // import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { LoadingButton } from '@mui/lab';
 import _ from 'lodash';
-
+import { BASE_URL } from 'src/utils/constant';
 // component
 // ----------------------------------------------------------------------
 
@@ -42,7 +42,7 @@ export default function StatsForm() {
 
   const addChurch = async (churchObject) => {
     try {
-      const response = await axios.post('https://bbm-bulk-api-gct.vercel.app/api/Church',churchObject,{
+      const response = await axios.post(BASE_URL + 'Church',churchObject,{
         mode: 'cors',
         headers: headers
     });

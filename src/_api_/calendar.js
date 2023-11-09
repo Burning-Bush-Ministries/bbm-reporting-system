@@ -11,15 +11,15 @@ const getCalendar = async () => {
     const resp = await response;
     console.log(resp.data);
     const res = [...resp.data].map((_, index) => ({
-      id: _.Id,
-      name: _.Name,
-      day: _.Day,
-      month: _.Month,
-      year: _.Year,
-      department: _.Department,
-      region: _.Region,
-      dayFrom: _.DayFrom,
-      dayTo: _.DayTo,
+      id: _.id,
+      name: _.name,
+      time: _.time,
+      month: _.month,
+      year: _.yearear,
+      department: _.department,
+      region: _.region,
+      dayFrom: _.dayFrom,
+      dayTo: _.dayTo,
     }));
     return res;
   } catch (err) {

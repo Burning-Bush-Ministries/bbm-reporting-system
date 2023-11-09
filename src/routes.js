@@ -13,6 +13,7 @@ import Auth from './pages/Auth';
 import Church from './pages/Church';
 import StatsPage from './pages/StatsPage';
 import ChurchRegister from './pages/ChurchRegister';
+import EventRegister from './pages/AddEvent';
 import StatsRegister from './pages/StatsRegister';
 import AddUser from './pages/AddUser';
 import CalendarPage from './pages/CalendarEvent';
@@ -48,10 +49,12 @@ export default function Router() {
         { path: 'add-user', element: <AddUser /> },
         { path: 'add-stats', element: <StatsRegister /> },
         { path: 'add-church', element: <ChurchRegister /> },
+        { path: 'add-event', element: <EventRegister /> },
         { path: '404', element: <NotFound /> },
         { path: '*', element: <Navigate to="/404" /> }
       ]
     },
-    { path: '*', element: <Navigate to="/404" replace /> }
+    { path: '*', element: <Navigate to="/404" replace /> },
+    { path: '/app/*', element: <Navigate to="/dashboard" replace /> }
   ]);
 }
