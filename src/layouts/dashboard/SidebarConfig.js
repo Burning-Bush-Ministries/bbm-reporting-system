@@ -27,6 +27,16 @@ const sidebarConfig = [
     icon: getIcon('eva:list-outline')
   },
   {
+    title: 'calendar',
+    path: '/app/calendar',
+    icon: getIcon('eva:calendar-outline')
+  },
+  {
+    title: 'storage',
+    path: '/app/storage',
+    icon: getIcon('eva:layers-outline')
+  },
+  {
     title: 'reports',
     path: '/app/reports',
     icon: getIcon('eva:attach-outline')

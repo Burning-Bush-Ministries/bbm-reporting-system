@@ -7,8 +7,6 @@ import Login from './pages/Login';
 import Gyser from './pages/Gyser';
 import Register from './pages/Register';
 import DashboardApp from './pages/DashboardApp';
-import Products from './pages/Products';
-import Blog from './pages/Blog';
 import User from './pages/Test';
 import NotFound from './pages/Page404';
 import Auth from './pages/Auth';
@@ -17,6 +15,7 @@ import StatsPage from './pages/StatsPage';
 import ChurchRegister from './pages/ChurchRegister';
 import StatsRegister from './pages/StatsRegister';
 import AddUser from './pages/AddUser';
+import CalendarPage from './pages/CalendarEvent';
 
 // ----------------------------------------------------------------------
 
@@ -32,6 +31,8 @@ export default function Router() {
         { path: 'stats', element: <StatsPage /> },
         { path: 'reports', element: <NotFound /> },
         { path: 'cells', element: <NotFound /> },
+        { path: 'calendar', element: <CalendarPage /> },
+        { path: 'storage', element: <NotFound /> },
         { path: 'stats', element: <NotFound /> }
       ]
     },

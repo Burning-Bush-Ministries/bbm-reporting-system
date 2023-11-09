@@ -1,11 +1,10 @@
 /* eslint-disable */
 
 // ----------------------------------------------------------------------
-const axios = require('axios');
-// const BASE_URL = 'https://bbmapi20230807123059.azurewebsites.net/api/';
-const BASE_URL = 'https://bbm-bulk-api-gct.vercel.app/api/';
+import { BASE_URL } from "../utils/constant";
 
-https://localhost:7193
+const axios = require('axios');
+
 
 var userObject = {
   name: 'string',

@@ -1,5 +1,4 @@
 // ----------------------------------------------------------------------
-// const BASE_URL = 'https://bbmapi20230807123059.azurewebsites.net/api/';
 
 const account = {
   displayName: 'Administrator',

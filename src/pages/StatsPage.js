@@ -114,8 +114,8 @@ class StatsPage extends Component {
   handleSelectAllClick = (event) => {
     this.displayData();
     if (event.target.checked) {
-      const newSelecteds = USERLIST.map((n) => n.name);
-      setSelected(newSelecteds);
+      const newSelecteds = STATSLIST.map((n) => n.name);
+      // setSelected(newSelecteds);
       return;
     }
     setSelected([]);
@@ -181,7 +181,7 @@ class StatsPage extends Component {
         <Container>
           <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
             <Typography variant="h4" gutterBottom>
-              Add Stats Details
+              Stats Details
             </Typography>
             <Button
               variant="contained"
@@ -189,7 +189,7 @@ class StatsPage extends Component {
               to="/add-stats"
               startIcon={<Iconify icon="eva:plus-fill" />}
             >
-              New Stats
+              Add New Stats
             </Button>
           </Stack>
 
@@ -214,7 +214,7 @@ class StatsPage extends Component {
                   />
 
                   <TableBody>
-                    {this.filteredUsers(STATSLIST)
+                    {STATSLIST.length>0 ? this.filteredUsers(STATSLIST)
                       ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                       .map((row) => {
                         const { id, churchId, adult, car, fk, ck, aow, saved, offering, visitors, date } =
@@ -257,7 +257,7 @@ class StatsPage extends Component {
                             </TableCell>
                           </TableRow>
                         );
-                      })}{' '}
+                      }): <div>No stats record available...</div>}{' '}
                     {console.log('Inside: => ', STATSLIST)}
                     {this.emptyRows(STATSLIST) > 0 && (
                       <TableRow style={{ height: 53 * this.emptyRows(STATSLIST) }}>

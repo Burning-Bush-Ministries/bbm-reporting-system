@@ -218,7 +218,7 @@ class Church extends Component {
                   />
 
                   <TableBody>
-                    {this.filteredUsers(CHURCHLIST)
+                    {CHURCHLIST.length>0 ? this.filteredUsers(CHURCHLIST)
                       ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                       .map((row) => {
                         const {
@@ -266,7 +266,7 @@ class Church extends Component {
                             </TableCell>
                           </TableRow>
                         );
-                      })} {console.log('Inside: => ', CHURCHLIST)}
+                      }): <div>No church record available...</div>} {console.log('Inside: => ', CHURCHLIST)}
                     {this.emptyRows(CHURCHLIST) > 0 && (
                       <TableRow style={{ height: 53 * this.emptyRows(CHURCHLIST) }}>
                         <TableCell colSpan={6} />

@@ -1,15 +1,13 @@
 /* eslint-disable */
 
-import { filter } from 'lodash';
-import { sentenceCase } from 'change-case';
 import React, { Component } from 'react';
+import { filter } from 'lodash';
 import { Link as RouterLink } from 'react-router-dom';
 // material
 import {
   Card,
   Table,
   Stack,
-  Avatar,
   Button,
   Checkbox,
   TableRow,
@@ -22,31 +20,26 @@ import {
 } from '@mui/material';
 // components
 import Page from '../components/Page';
-import Label from '../components/Label';
 import Scrollbar from '../components/Scrollbar';
 import Iconify from '../components/Iconify';
 import SearchNotFound from '../components/SearchNotFound';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../sections/@dashboard/user';
 //
-import USERLIST from '../_api_/user';
+import CALENDARLIST from '../_api_/calendar';
 
 // ----------------------------------------------------------------------
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'company', label: 'Company', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
-  { id: 'church', label: 'Church', alignRight: false },
-  { id: 'email', label: 'Email', alignRight: false },
-  { id: 'hours', label: 'Time', alignRight: false },
-  { id: 'gender', label: 'Gender', alignRight: false },
-  { id: 'username', label: 'Username', alignRight: false },
-  { id: 'ministry', label: 'Ministry', alignRight: false },
-  { id: 'cellLeader', label: 'Cell Leader', alignRight: false },
-  { id: 'cellLocation', label: 'Cell Location', alignRight: false },
-
+  { id: 'id', label: 'No.', alignRight: false },
+  { id: 'name', label: 'Event Name', alignRight: false },
+  { id: 'day', label: 'Time', alignRight: false },
+  { id: 'dayFrom', label: 'Start Day', alignRight: false },
+  { id: 'dayTo', label: 'End Day', alignRight: false },
+  { id: 'month', label: 'Month', alignRight: false },
+  { id: 'year', label: 'Year', alignRight: false },
+  { id: 'department', label: 'Department', alignRight: false },
+  { id: 'region', label: 'Region', alignRight: false },
   { id: '' }
 ];
-
 // ----------------------------------------------------------------------
 
 function descendingComparator(a, b, orderBy) {
@@ -81,20 +74,35 @@ function applySortFilter(array, comparator, query) {
   return array;
 }
 
-class User extends Component {
-
+class CalendarPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 0,
+      name: '',
       order: 'asc',
       selected: [],
       orderBy: 'name',
       filterName: '',
-      rowsPerPage: 5,
-      ARRAY_TO_USE: []
+      rowsPerPage: 10,
+      page: 0
     };
+    this.forceUpdate();
+    this.displayData = this.displayData.bind(this);
+    this.displayData();
   }
+
+  componentDidUpdate() {
+    this.handleChangeRowsPerPage;
+    this.render();
+  }
+
+  alertName = () => {
+    alert(this.state.name);
+  };
+
+  handleNameInput = (e) => {
+    this.setState({ name: e.target.value });
+  };
 
   handleRequestSort = (event, property) => {
     const isAsc = this.state.orderBy === property && this.state.order === 'asc';
@@ -103,14 +111,14 @@ class User extends Component {
   };
 
   handleSelectAllClick = (event) => {
+    this.displayData();
     if (event.target.checked) {
-      const newSelecteds = USERLIST.map((n) => n.name);
-      setSelected(newSelecteds);
+      const newSelecteds = CALENDARLIST.map((n) => n.name);
+    //   setSelected(newSelecteds);
       return;
     }
     setSelected([]);
   };
-
 
   handleClick = (event, name) => {
     const { selected } = this.state;
@@ -144,14 +152,14 @@ class User extends Component {
     this.setState({ filterName: event.target.value });
   };
 
-  emptyRows = (ARRAY_TO_USE) =>
+  emptyRows = (CALENDARLIST) =>
     this.state.page > 0
-      ? Math.max(0, (1 + this.state.page) * this.state.rowsPerPage - ARRAY_TO_USE.length)
+      ? Math.max(0, (1 + this.state.page) * this.state.rowsPerPage - CALENDARLIST.length)
       : 0;
 
-  filteredUsers = (ARRAY_TO_USE) =>
+  filteredUsers = (CALENDARLIST) =>
     applySortFilter(
-      ARRAY_TO_USE,
+      CALENDARLIST,
       getComparator(this.state.order, this.state.orderBy),
       this.state.filterName
     );
@@ -159,107 +167,34 @@ class User extends Component {
   isUserNotFound = this.state?.filteredUsers?.length === 0;
 
   displayData = () => {
-    const { page, order, selected, orderBy, filterName, rowsPerPage } = this.state;
-
-    USERLIST.then((ARRAY_TO_USE) => {
-      console.log('Dude: => ', ARRAY_TO_USE);
-      // this.setState({ ARRAY_TO_USE: ARRAY_TO_USE });
-      <TableBody>
-        {ARRAY_TO_USE.length>0 ? this.filteredUsers(ARRAY_TO_USE)
-          ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-          .map((row) => {
-            const {
-              id,
-              name,
-              company,
-              status,
-              avatarUrl,
-              ethnicity,
-              email,
-              hours,
-              gender,
-              username,
-              ministry,
-              cellLeader,
-              cellLocation
-            } = row;
-            const isItemSelected = selected.indexOf(name) !== -1;
-
-            return (
-              <TableRow
-                hover
-                key={id}
-                tabIndex={-1}
-                role="checkbox"
-                selected={isItemSelected}
-                aria-checked={isItemSelected}
-              >
-                <TableCell padding="checkbox">
-                  <Checkbox
-                    checked={isItemSelected}
-                    onChange={(event) => this.handleClick(event, name)}
-                  />
-                </TableCell>
-                <TableCell component="th" scope="row" padding="none">
-                  <Stack direction="row" alignItems="center" spacing={2}>
-                    <Avatar alt={name} src={avatarUrl} />
-                    <Typography variant="subtitle2" noWrap>
-                      {name}
-                    </Typography>
-                  </Stack>
-                </TableCell>
-                <TableCell align="left">{company}</TableCell>
-                <TableCell align="left">{username}</TableCell>
-                <TableCell align="left">
-                  <Label variant="ghost" color={(status === 'banned' && 'error') || 'success'}>
-                    {status}
-                  </Label>
-                </TableCell>
-                <TableCell align="left">{ethnicity}</TableCell>
-                <TableCell align="left">{email}</TableCell>
-                <TableCell align="left">{hours}</TableCell>
-                <TableCell align="left">{gender}</TableCell>
-                <TableCell align="left">{ministry}</TableCell>
-                <TableCell align="left">{cellLeader}</TableCell>
-                <TableCell align="left">{cellLocation}</TableCell>
-
-                <TableCell align="right">
-                  <UserMoreMenu />
-                </TableCell>
-              </TableRow>
-            );
-          }): <div>No members record available...</div>}
-        {this.emptyRows(ARRAY_TO_USE) > 0 && (
-          <TableRow style={{ height: 53 * this.emptyRows(ARRAY_TO_USE) }}>
-            <TableCell colSpan={6} />
-          </TableRow>
-        )}
-      </TableBody>;
-    });
+    console.log('Dude: => ', CALENDARLIST);
+    this.setState({ ARRAY_TO_USE: CALENDARLIST });
+    this.forceUpdate();
   };
 
   render() {
-    const { page, order, selected, orderBy, filterName, ARRAY_TO_USE, rowsPerPage } = this.state;
+    const { page, order, selected, orderBy, filterName, rowsPerPage } = this.state;
+
     return (
-      <Page title="User | Minimal-UI">
+      <Page title="Calendar | BBM">
         <Container>
           <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
             <Typography variant="h4" gutterBottom>
-              Users
+              Calendar Details
             </Typography>
             <Button
               variant="contained"
               component={RouterLink}
-              to="/register"
+              to="/add-calendar"
               startIcon={<Iconify icon="eva:plus-fill" />}
             >
-              New User
+              Add New Event
             </Button>
           </Stack>
 
           <Card>
             <UserListToolbar
-              numSelected={selected.length}
+              numSelected={selected?.length}
               filterName={filterName}
               onFilterName={this.handleFilterByName}
             />
@@ -271,24 +206,70 @@ class User extends Component {
                     order={order}
                     orderBy={orderBy}
                     headLabel={TABLE_HEAD}
-                    rowCount={ARRAY_TO_USE.length}
-                    numSelected={this.state.selected.length}
+                    rowCount={CALENDARLIST.length}
+                    numSelected={selected?.length}
                     onRequestSort={this.handleRequestSort}
-                    onSelectAllClick={handleSelectAllClick}
+                    onSelectAllClick={this.handleSelectAllClick}
                   />
-                  {/* {this.displayData} */}
-                  {/* <TableBody>
-                        <TableRow>
-                          <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
-                            Loading users..
-                          </TableCell>
-                        </TableRow>
-                      </TableBody> */}
+
+                  <TableBody>
+                    { CALENDARLIST.length>0 ? this.filteredUsers(CALENDARLIST)
+                      ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                      .map((row) => {
+                        const { id, name, day, dayFrom, dayTo, month, year, department, region } =
+                          row;
+                        const isItemSelected = selected.indexOf(name) !== -1;
+
+                        return (
+                          <TableRow
+                            hover
+                            key={id}
+                            tabIndex={-1}
+                            role="checkbox"
+                            selected={isItemSelected}
+                            aria-checked={isItemSelected}
+                          >
+                            <TableCell padding="checkbox">
+                              <Checkbox
+                                checked={isItemSelected}
+                                onChange={(event) => this.handleClick(event, name)}
+                              />
+                            </TableCell>
+                            <TableCell component="th" scope="row" padding="none" key={id}>
+                              <Stack direction="row" alignItems="center" spacing={2}>
+                                <Typography variant="subtitle2" noWrap>
+                                  {id}
+                                </Typography>
+                              </Stack>
+                            </TableCell>
+                            <TableCell align="left">{name}</TableCell>
+                            <TableCell align="left">{day}</TableCell>
+                            <TableCell align="left">{dayFrom}</TableCell>
+                            <TableCell align="left">{dayTo}</TableCell>
+                            <TableCell align="left">{month}</TableCell>
+                            <TableCell align="left">{year}</TableCell>
+                            <TableCell align="left">{department}</TableCell>
+                            <TableCell align="left">{region}</TableCell>
+                            {/* <TableCell align="left">{date.substring(0, 10)}</TableCell> */}
+                            <TableCell align="right">
+                              <UserMoreMenu />
+                            </TableCell>
+                          </TableRow>
+                        );
+                      }) : <div>No calendar event record available...</div>} {' '}
+                    {console.log('Inside: => ', CALENDARLIST)}
+                    {this.emptyRows(CALENDARLIST) > 0 && (
+                      <TableRow style={{ height: 53 * this.emptyRows(CALENDARLIST) }}>
+                        <TableCell colSpan={6} />
+                      </TableRow>
+                    )}
+                  </TableBody>
+
                   {this.isUserNotFound && (
                     <TableBody>
                       <TableRow>
                         <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
-                          <SearchNotFound searchQuery={this.state.filterName} />
+                          <SearchNotFound searchQuery={filterName} />
                         </TableCell>
                       </TableRow>
                     </TableBody>
@@ -300,7 +281,7 @@ class User extends Component {
             <TablePagination
               rowsPerPageOptions={[5, 10, 25]}
               component="div"
-              count={ARRAY_TO_USE.length}
+              count={CALENDARLIST.length}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={this.handleChangePage}
@@ -313,4 +294,4 @@ class User extends Component {
   }
 }
 
-export default User;
+export default CalendarPage;
