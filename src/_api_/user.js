@@ -27,10 +27,9 @@ const getUsers = async () => {
       cellLocation: _.cellLocationl,
       ministry: _.ministry
     }));
-    return resp.data;
+    return resp?.data ?? [];
   } catch (err) {
-    console.log(err);
-    throw err;
+    if (err.code == "ERR_NETWORK") return -1
   }
 };
 const userArray = await getUsers();

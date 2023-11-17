@@ -21,10 +21,9 @@ const getChurch = async () => {
       region: _.region,
       pastorId: _.pastorId
     }));
-    return resp.data;
+    return resp?.data ?? [];
   } catch (err) {
-    console.log(err);
-    throw err;
+    if (err.code == "ERR_NETWORK") return -1
   }
 };
 const churchArray = await getChurch();

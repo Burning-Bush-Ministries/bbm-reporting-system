@@ -17,10 +17,8 @@ const getLeader = async () => {
       office: _.office,
       personId: _.personId
     }));
-    return res;
-  } catch (err) {
-    console.log(err);
-    throw err;
+    return res ?? [];
+    if (err.code == "ERR_NETWORK") return -1
   }
 };
 const leaderArray = getLeader();

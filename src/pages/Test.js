@@ -222,7 +222,7 @@ class User extends Component {
                   />
 
                   <TableBody>
-                    {this.filteredUsers(USERLIST)
+                    {USERLIST.length > 0 ? this.filteredUsers(USERLIST)
                       ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                       .map((row) => {
                         const {
@@ -285,7 +285,7 @@ class User extends Component {
                             </TableCell>
                           </TableRow>
                         );
-                      })} {console.log('Inside: => ', USERLIST)}
+                      }): <div>No people's record available...</div>}  {console.log('Inside: => ', USERLIST)}
                     {this.emptyRows(USERLIST) > 0 && (
                       <TableRow style={{ height: 53 * this.emptyRows(USERLIST) }}>
                         <TableCell colSpan={6} />

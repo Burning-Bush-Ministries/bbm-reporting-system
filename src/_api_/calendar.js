@@ -21,10 +21,9 @@ const getCalendar = async () => {
       dayFrom: _.dayFrom,
       dayTo: _.dayTo,
     }));
-    return res;
+    return res ?? [];
   } catch (err) {
-    console.log(err);
-    throw err;
+    if (err.code == "ERR_NETWORK") return -1
   }
 };
 const calendarArray = await getCalendar();

@@ -30,8 +30,7 @@ const addUsers = async ({ userObject }) => {
     // (tenantID, lastName, firstName, email, occupation, online, tagID, hours, temperature, gender, ethnicity, accessType, status, username, password, biometricID, faceID) VALUES
     // (${userObject.tenantID}, '${userObject.lastName}', '${userObject.firstName}', '${userObject.email}', '${userObject.occupation}', ${userObject.online}, '${userObject.tagID}', '${defaultZero}', ${defaultZero}, '${userObject.gender}', '${userObject.ethnicity}', ${defaultZero}, ${defaultZero}, '${userObject.username}', '${userObject.password}', '${userObject.biometricID}',' ${userObject.faceID}') `;
   } catch (err) {
-    console.log(err);
-    throw err;
+    if (err.code == "ERR_NETWORK") return -1
   }
 };
 const userArray = addUsers({ userObject });

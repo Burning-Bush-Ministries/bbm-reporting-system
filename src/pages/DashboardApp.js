@@ -17,7 +17,7 @@ import STATSLIST from '../_api_/stats';
 // ----------------------------------------------------------------------
 
 export default function DashboardApp() {
-  console.log('Stats List: ' && STATSLIST[0].adult);
+  console.log('Stats List: ' && STATSLIST[0]?.adult);
   console.log('Array ' && { STATSLIST });
   const lastRow = STATSLIST.length - 1;
   return (
@@ -25,7 +25,7 @@ export default function DashboardApp() {
       <Container maxWidth="xl">
         <Box sx={{ pb: 5 }}>
           <Typography variant="h4">
-            Hi, Welcome back. Stats Date: {STATSLIST[lastRow].date.substring(0, 10)} Church:{' '}
+            Hi, Welcome back. Stats Date: {STATSLIST[lastRow]?.date?.substring(0, 10)} Church:{' '}
             {STATSLIST[lastRow]?.churchId}
             {/* <Select>
               <MenuItem value="">

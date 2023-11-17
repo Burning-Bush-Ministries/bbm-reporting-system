@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Gyser from './pages/Gyser';
 import Register from './pages/Register';
 import DashboardApp from './pages/DashboardApp';
+import Home from './pages/Home';
 import User from './pages/Test';
 import NotFound from './pages/Page404';
 import Auth from './pages/Auth';
@@ -26,6 +27,7 @@ export default function Router() {
       path: '/app',
       element: <DashboardLayout />,
       children: [
+        { path: 'home', element: <Home /> },
         { path: 'dashboard', element: <DashboardApp /> },
         { path: 'user', element: <User /> },
         { path: 'church', element: <Church /> },
