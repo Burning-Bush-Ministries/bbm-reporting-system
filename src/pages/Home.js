@@ -3,6 +3,7 @@ import * as React from 'react';
 import SvgIcon from '@mui/material/SvgIcon';
 import { styled } from '@mui/material/styles';
 import { Box, Paper, Grid, Button } from '@mui/material';
+import Iconify from '../components/Iconify';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -21,47 +22,45 @@ const ButtonClick = styled(Button)(({ theme }) => ({
   display: 'inline'
 }));
 
+const getIcon = (name) => <Iconify icon={name} fontSize="xxx-large" />;
+
+
 const MENU_ITMES = [
     {
-        icon : <HomeIcon fontSize="large" />,
+        icon : getIcon('eva:home-fill'),
         itemName : 'Church'
     },
     {
-        icon : <HomeIcon fontSize="large" />,
+        icon : getIcon('eva:list-outline'),
         itemName : 'Stats'
     },
     {
-        icon : <HomeIcon fontSize="large" />,
+        icon : getIcon('eva:calendar-outline'),
         itemName : 'Calendar'
     },
     {
-        icon : <HomeIcon fontSize="large" />,
+        icon : getIcon('eva:layers-outline'),
         itemName : 'Assets Inventory'
     },
     {
-        icon : <HomeIcon fontSize="large" />,
+        icon : getIcon('eva:book-open-outline'),
         itemName : 'Bush Camp'
     },
     {
-        icon : <HomeIcon fontSize="large" />,
+        icon : getIcon('eva:monitor-outline'),
         itemName : 'FRC School'
     },
     {
-        icon : <HomeIcon fontSize="large" />,
+        icon : getIcon('eva:gift-outline'),
         itemName : 'Gear'
+    },
+    {
+        icon : getIcon('eva:attach-outline'),
+        itemName : 'Reports'
     }
 ]
 
-function HomeIcon(props) {
-  return (
-    <SvgIcon {...props}>
-      <path d="M 10 14 h 4 v 7 h -4 Z" />
-      <path d="M 20.42 10.18 L 12.71 2.3 a 1 1 0 0 0 -1.42 0 l -7.71 7.89 A 2 2 0 0 0 3 11.62 V 20 a 2 2 0 0 0 1.89 2 H 8 v -9 a 1 1 0 0 1 1 -1 h 6 a 1 1 0 0 1 1 1 v 9 h 3.11 A 2 2 0 0 0 21 20 v -8.38 a 2.07 2.07 0 0 0 -0.58 -1.44 Z" />
-    </SvgIcon>
-  );
-}
-
-function FormRow({ name = 'Church', icon = <HomeIcon fontSize="large" />, url = '/' }) {
+function FormRow({ name = 'Reports', icon =  getIcon('eva:layers-outline'), url = '/' }) {
   return (
    <Grid item xs={4}>
       <Item>
