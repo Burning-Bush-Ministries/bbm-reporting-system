@@ -31,10 +31,6 @@ const MENU_ITMES = [
         itemName : 'Church'
     },
     {
-        icon : getIcon('eva:list-outline'),
-        itemName : 'Stats'
-    },
-    {
         icon : getIcon('eva:calendar-outline'),
         itemName : 'Calendar'
     },
