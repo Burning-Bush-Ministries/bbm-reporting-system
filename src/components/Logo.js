@@ -7,8 +7,8 @@ Logo.propTypes = {};
 
 export default function Logo() {
   return (
-    <RouterLink to>
-      <img src="/static/logo.jpg" width={50} height={50} alt="gct-logo" />
+    <RouterLink to={'/app/home'}>
+      <img src="/static/logo.jpg" width={50} height={50} alt="bbm-logo" />
     </RouterLink>
   );
 }
