@@ -14,10 +14,11 @@ import Auth from './pages/Auth';
 import Church from './pages/Church';
 import StatsPage from './pages/StatsPage';
 import ChurchRegister from './pages/ChurchRegister';
-import EventRegister from './pages/AddEvent';
+import EventRegister from './pages/calendar/AddEvent';
 import StatsRegister from './pages/StatsRegister';
 import AddUser from './pages/AddUser';
-import CalendarPage from './pages/CalendarEvent';
+import CalendarPage from './pages/calendar/CalendarEvent';
+import EventMenu from './pages/calendar/EventsMenu';
 
 // ----------------------------------------------------------------------
 
@@ -28,6 +29,7 @@ export default function Router() {
       element: <DashboardLayout />,
       children: [
         { path: 'home', element: <Home /> },
+        { path: 'event-menu', element: <EventMenu/>},
         { path: 'dashboard', element: <DashboardApp /> },
         { path: 'user', element: <User /> },
         { path: 'church', element: <Church /> },

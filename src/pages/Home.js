@@ -1,6 +1,6 @@
 /* eslint-disable */
 import * as React from 'react';
-import SvgIcon from '@mui/material/SvgIcon';
+import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { Box, Paper, Grid, Button } from '@mui/material';
 import Iconify from '../components/Iconify';
@@ -28,39 +28,42 @@ const getIcon = (name) => <Iconify icon={name} fontSize="xxx-large" />;
 const MENU_ITMES = [
     {
         icon : getIcon('eva:home-fill'),
-        itemName : 'Church'
+        itemName : 'Church',
+        url: '/app/home'
     },
     {
         icon : getIcon('eva:calendar-outline'),
-        itemName : 'Calendar'
+        itemName : 'Calendar',
+        url: '/app/event-menu'
     },
     {
         icon : getIcon('eva:layers-outline'),
-        itemName : 'Assets Inventory'
+        itemName : 'Assets Inventory',
+        url: '/app/home'
     },
     {
         icon : getIcon('eva:book-open-outline'),
-        itemName : 'Bush Camp'
+        itemName : 'Bush Camp',
+        url: '/app/home'
     },
     {
         icon : getIcon('eva:monitor-outline'),
-        itemName : 'FRC School'
+        itemName : 'FRC School',
+        url: '/app/home'
     },
     {
         icon : getIcon('eva:gift-outline'),
-        itemName : 'Gear'
-    },
-    {
-        icon : getIcon('eva:attach-outline'),
-        itemName : 'Reports'
+        itemName : 'Gear',
+        url: '/app/home'
     }
 ]
 
 function FormRow({ name = 'Reports', icon =  getIcon('eva:layers-outline'), url = '/' }) {
+  const navigate = useNavigate();
   return (
    <Grid item xs={4}>
       <Item>
-        <ButtonClick>
+        <ButtonClick onClick={()=>navigate(url)}>
           {icon}
           <br />
           {name}
@@ -76,8 +79,7 @@ export default function SvgIconsSize() {
       <Grid container spacing={1}>
         <Grid container item spacing={3}>
           {MENU_ITMES.map((item, index) =>{
-            console.log("itemName", item.icon);
-            return <FormRow icon={item.icon} name={item.itemName}/>
+            return <FormRow icon={item.icon} name={item.itemName} url={item.url} />
           })   
          }
         </Grid>
