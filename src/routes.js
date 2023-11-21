@@ -19,7 +19,7 @@ import StatsRegister from './pages/StatsRegister';
 import AddUser from './pages/AddUser';
 import CalendarPage from './pages/calendar/CalendarEvent';
 import EventMenu from './pages/calendar/EventsMenu';
-
+import DisplayEvent from './pages/calendar/DisplayEvent';
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -30,6 +30,7 @@ export default function Router() {
       children: [
         { path: 'home', element: <Home /> },
         { path: 'event-menu', element: <EventMenu/>},
+        { path: 'event-display', element: <DisplayEvent/>},
         { path: 'dashboard', element: <DashboardApp /> },
         { path: 'user', element: <User /> },
         { path: 'church', element: <Church /> },

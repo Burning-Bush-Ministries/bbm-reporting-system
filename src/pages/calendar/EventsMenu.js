@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { List, ListItem, ListItemButton, Box, ListItemIcon, Divider, ListItemText }  from '@mui/material';
 import Iconify from '../../components/Iconify';
+import { useNavigate } from 'react-router-dom';
 
 export default function EventCalendar() {
+  const navigate = useNavigate();
 
     return (
-    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+    <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
       <nav aria-label="main mailbox folders">
-        <List>
+        <List style={{ paddingBottom: 0, paddingTop: 0, background: 'turquoise' }}>
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon >
@@ -22,12 +24,12 @@ export default function EventCalendar() {
       <nav aria-label="secondary mailbox folders">
         <List>
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={() => navigate("/app/event-display")}>
               <ListItemText primary="National Calendar" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={() => navigate("/app/event-display")}>
               <ListItemText primary="Regional Calendar" />
             </ListItemButton>
           </ListItem>
