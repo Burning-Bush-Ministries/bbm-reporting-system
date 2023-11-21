@@ -65,7 +65,7 @@ function getComparator(order, orderBy) {
 }
 
 function applySortFilter(array, comparator, query) {
-  if (array.length > 0) {
+  if (array?.length > 0) {
     const stabilizedThis = array?.map((el, index) => [el, index]);
     stabilizedThis.sort((a, b) => {
       const order = comparator(a[0], b[0]);
@@ -162,7 +162,7 @@ class User extends Component {
 
   emptyRows = (USERLIST) =>
     this.state.page > 0
-      ? Math.max(0, (1 + this.state.page) * this.state.rowsPerPage - USERLIST.length)
+      ? Math.max(0, (1 + this.state.page) * this.state.rowsPerPage - USERLIST?.length)
       : 0;
 
   filteredUsers = (USERLIST) =>
@@ -215,14 +215,14 @@ class User extends Component {
                     order={order}
                     orderBy={orderBy}
                     headLabel={TABLE_HEAD}
-                    rowCount={USERLIST.length}
+                    rowCount={USERLIST?.length}
                     numSelected={selected?.length}
                     onRequestSort={this.handleRequestSort}
                     onSelectAllClick={this.handleSelectAllClick}
                   />
 
                   <TableBody>
-                    {USERLIST.length > 0 ? this.filteredUsers(USERLIST)
+                    {USERLIST?.length > 0 ? this.filteredUsers(USERLIST)
                       ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                       .map((row) => {
                         const {
@@ -309,7 +309,7 @@ class User extends Component {
             <TablePagination
               rowsPerPageOptions={[5, 10, 25]}
               component="div"
-              count={USERLIST.length}
+              count={USERLIST?.length}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={this.handleChangePage}

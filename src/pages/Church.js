@@ -158,7 +158,7 @@ class Church extends Component {
 
   emptyRows = (CHURCHLIST) =>
     this.state.page > 0
-      ? Math.max(0, (1 + this.state.page) * this.state.rowsPerPage - CHURCHLIST.length)
+      ? Math.max(0, (1 + this.state.page) * this.state.rowsPerPage - CHURCHLIST?.length)
       : 0;
 
   filteredUsers = (CHURCHLIST) =>
@@ -211,14 +211,14 @@ class Church extends Component {
                     order={order}
                     orderBy={orderBy}
                     headLabel={TABLE_HEAD}
-                    rowCount={CHURCHLIST.length}
+                    rowCount={CHURCHLIST?.length}
                     numSelected={selected?.length}
                     onRequestSort={this.handleRequestSort}
                     onSelectAllClick={this.handleSelectAllClick}
                   />
 
                   <TableBody>
-                    {CHURCHLIST.length>0 ? this.filteredUsers(CHURCHLIST)
+                    {CHURCHLIST?.length>0 ? this.filteredUsers(CHURCHLIST)
                       ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                       .map((row) => {
                         const {
@@ -290,7 +290,7 @@ class Church extends Component {
             <TablePagination
               rowsPerPageOptions={[5, 10, 25]}
               component="div"
-              count={CHURCHLIST.length}
+              count={CHURCHLIST?.length}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={this.handleChangePage}

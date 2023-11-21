@@ -155,7 +155,7 @@ class StatsPage extends Component {
 
   emptyRows = (STATSLIST) =>
     this.state.page > 0
-      ? Math.max(0, (1 + this.state.page) * this.state.rowsPerPage - STATSLIST.length)
+      ? Math.max(0, (1 + this.state.page) * this.state.rowsPerPage - STATSLIST?.length)
       : 0;
 
   filteredUsers = (STATSLIST) =>
@@ -207,14 +207,14 @@ class StatsPage extends Component {
                     order={order}
                     orderBy={orderBy}
                     headLabel={TABLE_HEAD}
-                    rowCount={STATSLIST.length}
+                    rowCount={STATSLIST?.length}
                     numSelected={selected?.length}
                     onRequestSort={this.handleRequestSort}
                     onSelectAllClick={this.handleSelectAllClick}
                   />
 
                   <TableBody>
-                    {STATSLIST.length>0 ? this.filteredUsers(STATSLIST)
+                    {STATSLIST?.length>0 ? this.filteredUsers(STATSLIST)
                       ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                       .map((row) => {
                         const { id, churchId, adult, car, fk, ck, aow, saved, offering, visitors, date } =
@@ -282,7 +282,7 @@ class StatsPage extends Component {
             <TablePagination
               rowsPerPageOptions={[5, 10, 25]}
               component="div"
-              count={STATSLIST.length}
+              count={STATSLIST?.length}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={this.handleChangePage}

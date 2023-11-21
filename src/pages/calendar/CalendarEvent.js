@@ -59,7 +59,7 @@ function getComparator(order, orderBy) {
 }
 
 function applySortFilter(array, comparator, query) {
-  if (array.length > 0) {
+  if (array?.length > 0) {
     const stabilizedThis = array?.map((el, index) => [el, index]);
     stabilizedThis.sort((a, b) => {
       const order = comparator(a[0], b[0]);
@@ -154,7 +154,7 @@ class CalendarPage extends Component {
 
   emptyRows = (CALENDARLIST) =>
     this.state.page > 0
-      ? Math.max(0, (1 + this.state.page) * this.state.rowsPerPage - CALENDARLIST.length)
+      ? Math.max(0, (1 + this.state.page) * this.state.rowsPerPage - CALENDARLIST?.length)
       : 0;
 
   filteredUsers = (CALENDARLIST) =>
@@ -206,14 +206,14 @@ class CalendarPage extends Component {
                     order={order}
                     orderBy={orderBy}
                     headLabel={TABLE_HEAD}
-                    rowCount={CALENDARLIST.length}
+                    rowCount={CALENDARLIST?.length}
                     numSelected={selected?.length}
                     onRequestSort={this.handleRequestSort}
                     onSelectAllClick={this.handleSelectAllClick}
                   />
 
                   <TableBody>
-                    { CALENDARLIST.length>0 ? this.filteredUsers(CALENDARLIST)
+                    { CALENDARLIST?.length>0 ? this.filteredUsers(CALENDARLIST)
                       ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                       .map((row) => {
                         const { id, name, time, dayFrom, dayTo, month, year, department, region } =
@@ -281,7 +281,7 @@ class CalendarPage extends Component {
             <TablePagination
               rowsPerPageOptions={[5, 10, 25]}
               component="div"
-              count={CALENDARLIST.length}
+              count={CALENDARLIST?.length}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={this.handleChangePage}

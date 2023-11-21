@@ -17,9 +17,9 @@ import STATSLIST from '../_api_/stats';
 // ----------------------------------------------------------------------
 
 export default function DashboardApp() {
-  console.log('Stats List: ' && STATSLIST[0]?.adult);
+  // console.log('Stats List: ' && STATSLIST[0]?.adult);
   console.log('Array ' && { STATSLIST });
-  const lastRow = STATSLIST.length - 1;
+  const lastRow = STATSLIST?.length - 1;
   return (
     <Page title="Dashboard | BBM">
       <Container maxWidth="xl">
