@@ -1,6 +1,6 @@
 .css-1gvwpv9-MuiTableRow-root {
     color: inherit;
-    display: inline-table;
-    vertical-align: super;
+    display: inline-table !important;
+    vertical-align: super !important;
     outline: 0;
 }
