@@ -50,7 +50,7 @@ export default function AddEvent() {
         <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
           Be deligent to know the state of the flock
         </Typography>
-        <img alt="register" src="/static/illustrations/illustration_register.png" />
+        <img alt="register" src="/static/prev.png" />
       </SectionStyle>
 
       <Container>

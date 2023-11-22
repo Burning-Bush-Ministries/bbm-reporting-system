@@ -31,7 +31,7 @@ const ContentStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(12, 0)
 }));
 
-const background = '/static/repo.jpg';
+const background = '/static/prev.png';
 const logo = '/static/logo.jpg';
 
 // ----------------------------------------------------------------------
