@@ -1,18 +1,24 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
+// material
+import {
+  Box,
+  Collapse,
+  IconButton,
+  Table,
+  Paper,
+  Button,
+  TableHead,
+  TableRow,
+  TableBody,
+  TableCell,
+  Typography,
+  TableContainer,
+} from '@mui/material';
+import './DisplayEvent.css';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import './DisplayEvent.css';
+import Iconify from '../../components/Iconify';
+import { useNavigate } from 'react-router-dom';
 
 import CALENDARLIST from '../../_api_/calendar';
 
@@ -31,38 +37,6 @@ const TABLE_HEAD = [
 ];
 // ----------------------------------------------------------------------
 
-function createData(
-  name: string
-) {
-  return {
-    name,
-    events: [
-      {
-        date: '2023-12-14',
-        month: "January",
-        eventName: 'Harvest',
-        region: "National",
-        department: "Ministry",
-        year: 2023,
-        dayFrom: 17,
-        dayTo: 20,
-        time: '10:00'
-      },
-      {
-        date: '2024-01-01',
-        eventName: 'New Year',
-        month: "February",
-        region: "National",
-        department: "Covenant Keepers",
-        year: 2023,
-        dayFrom: 17,
-        dayTo: 20,
-        time: '10:00'
-      },
-    ],
-  };
-}
-
 const displayData = () => {
   console.log('Inside New Page: => ', CALENDARLIST);
 };
@@ -71,6 +45,7 @@ const displayData = () => {
 function Row(props: { row: ReturnType<typeof CALENDARLIST> }) {
   const { row } = props;
   const [open, setOpen] = React.useState(true);
+
   return (
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -123,6 +98,8 @@ function Row(props: { row: ReturnType<typeof CALENDARLIST> }) {
 }
 
 export default function CollapsibleTable() {
+  const navigate = useNavigate();
+
   return (
     <TableContainer style={{ display: 'inlineTable', verticalAlign: 'super'}} component={Paper}>
       <Table aria-label="collapsible table">
@@ -133,7 +110,14 @@ export default function CollapsibleTable() {
             <TableCell align="right"></TableCell>
             <TableCell align="right"></TableCell>
             <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
+            <TableCell align="right">
+              <Button
+              variant="contained"
+              onClick={() => navigate("/add-event")}
+              startIcon={<Iconify icon="eva:plus-fill" />}
+            >
+              Add
+            </Button></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

@@ -41,7 +41,7 @@ export default function AddEvent() {
   return (
     <RootStyle title="Add Event | BBM">
       <AuthLayout>
-        <Link underline="none" variant="subtitle2" component={RouterLink} to="/app/calendar">
+        <Link underline="none" variant="subtitle2" component={RouterLink} to="/app/event-display">
           back to events lists
         </Link>
       </AuthLayout>
