@@ -29,7 +29,7 @@ const MENU_ITMES = [
     {
         icon : getIcon('eva:home-fill'),
         itemName : 'Church',
-        url: '/app/home'
+        url: 'login'
     },
     {
         icon : getIcon('eva:calendar-outline'),
@@ -39,22 +39,22 @@ const MENU_ITMES = [
     {
         icon : getIcon('eva:layers-outline'),
         itemName : 'Assets Inventory',
-        url: '/app/home'
+        url: 'login'
     },
     {
         icon : getIcon('eva:book-open-outline'),
         itemName : 'Bush Camp',
-        url: '/app/home'
+        url: 'login'
     },
     {
         icon : getIcon('eva:monitor-outline'),
         itemName : 'FRC School',
-        url: '/app/home'
+        url: 'login'
     },
     {
         icon : getIcon('eva:gift-outline'),
         itemName : 'Gear',
-        url: '/app/home'
+        url: '/login'
     }
 ]
 
