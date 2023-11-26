@@ -3,10 +3,10 @@ import { Link as RouterLink } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { Box, Card, Link, Container, Typography } from '@mui/material';
 // layouts
-import AuthLayout from '../../layouts/AuthLayout';
+import AuthLayout from '../layouts/AuthLayout';
 // components
-import Page from '../../components/Page';
-import { EventForm } from '../../sections/authentication/register';
+import Page from '../components/Page';
+import { EventForm } from '../sections/authentication/register';
 
 // ----------------------------------------------------------------------
 
@@ -48,9 +48,9 @@ export default function AddEvent() {
 
       <SectionStyle sx={{ display: { xs: 'none', md: 'flex' } }}>
         <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-          Be deligent to know the state of the flock
+          There's time for everything.
         </Typography>
-        <img alt="register" src="/static/illustrations/illustration_register.png" />
+        <img alt="calendar" src="static/illustrations/calendar.jpg" />
       </SectionStyle>
 
       <Container>
