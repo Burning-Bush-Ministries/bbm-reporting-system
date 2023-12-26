@@ -31,13 +31,20 @@ export default function Router() {
         { path: 'home', element: <Home /> },
         { path: 'event-menu', element: <EventMenu/>},
         { path: 'event-display', element: <DisplayEvent/>},
-        { path: 'dashboard', element: <DashboardApp /> },
-        { path: 'user', element: <User /> },
-        { path: 'church', element: <Church /> },
-        { path: 'stats', element: <StatsPage /> },
+        // { path: 'dashboard', element: <DashboardApp /> },
+        // { path: 'user', element: <User /> },
+        // { path: 'church', element: <Church /> },
+        // { path: 'stats', element: <StatsPage /> },
+             { path: 'dashboard', element: <NotFound /> },
+        { path: 'user', element: <NotFound /> },
+        { path: 'church', element: <NotFound /> },
+        { path: 'stats', element: <NotFound /> },
         { path: 'reports', element: <NotFound /> },
+
         { path: 'cells', element: <NotFound /> },
-        { path: 'calendar', element: <CalendarPage /> },
+        // { path: 'calendar', element: <CalendarPage /> },
+                { path: 'calendar', element: <NotFound /> },
+
         { path: 'storage', element: <NotFound /> },
         { path: 'stats', element: <NotFound /> }
       ]
@@ -46,7 +53,7 @@ export default function Router() {
       path: '/',
       element: <LogoOnlyLayout />,
       children: [
-        { path: '/', element: <Auth /> },
+        { path: '/', element: <Home /> },
         { path: '/app', element: <Navigate to="/dashboard" /> },
         { path: 'login', element: <Login /> },
         { path: 'gyser', element: <Gyser /> },

@@ -41,7 +41,7 @@ export default function AddEvent() {
   return (
     <RootStyle title="Add Event | BBM">
       <AuthLayout>
-        <Link underline="none" variant="subtitle2" component={RouterLink} to="/app/calendar">
+        <Link underline="none" variant="subtitle2" component={RouterLink} to="/app/event-display">
           back to events lists
         </Link>
       </AuthLayout>
@@ -50,7 +50,7 @@ export default function AddEvent() {
         <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
           There's time for everything.
         </Typography>
-        <img alt="calendar" src="static/illustrations/calendar.jpg" />
+        <img alt="register" src="/static/prev.png" />
       </SectionStyle>
 
       <Container>

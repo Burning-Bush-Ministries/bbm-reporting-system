@@ -29,7 +29,7 @@ export default function EventCalendar() {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton onClick={() => navigate("/app/event-display")}>
+            <ListItemButton onClick={() => navigate("")}>
               <ListItemText primary="Regional Calendar" />
             </ListItemButton>
           </ListItem>
