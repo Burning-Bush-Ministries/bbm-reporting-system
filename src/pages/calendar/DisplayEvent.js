@@ -19,6 +19,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Iconify from '../../components/Iconify';
 import { useNavigate } from 'react-router-dom';
+import Months from './Months';
 
 import CALENDARLIST from '../../_api_/calendar';
 
@@ -48,51 +49,7 @@ function Row(props: { row: ReturnType<typeof CALENDARLIST> }) {
 
   return (
     <React.Fragment>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-      <Typography scope="row" variant="h7" gutterBottom component="div">
-          {row.name} Upcoming..
-        </Typography>
-        <TableCell>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
-        </TableCell>
-
-      </TableRow>
-      <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0}} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 1 }}>
-              <Table size="small" aria-label="purchases">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Month</TableCell>
-                    <TableCell>Event</TableCell>
-                    <TableCell align="right">Department</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody style={{ paddingBottom: 0, paddingTop: 0, background: 'gainsboro' }}>
-                  {CALENDARLIST.map((eventRow) => (
-                    <TableRow key={eventRow.id}>
-                      <TableCell component="th" scope="row">
-                        {eventRow.dayFrom}  { (eventRow.dayFrom === eventRow.dayTo) ? "" : "  -  " + (eventRow.dayTo)}
-                      </TableCell>
-                      <TableCell>{eventRow.month}</TableCell>
-                      <TableCell>{eventRow.name}</TableCell>
-                      <TableCell align="right">{eventRow.department}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </Box>
-          </Collapse>
-        </TableCell>
-      </TableRow>
+      <Months/>
     </React.Fragment>
   );
 }
