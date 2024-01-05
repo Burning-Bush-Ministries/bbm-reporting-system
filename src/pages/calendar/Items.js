@@ -1,44 +1,20 @@
 import * as React from "react";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import Divider from "@mui/material/Divider";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
+import {Avatar, ListItemAvatar, ListItemText, Divider, ListItem, List} from "@mui/material";
 import Typography from "@mui/material/Typography";
 
-const items = [
-  {
-    avatarSrc: "/static/images/avatar/1.jpg",
-    primary: "Brunch this weekend?",
-    secondary: "Ali Connors — I'll be in your neighborhood doing errands this…",
-  },
-  {
-    avatarSrc: "/static/images/avatar/2.jpg",
-    primary: "Summer BBQ",
-    secondary:
-      "to Scott, Alex, Jennifer — Wish I could come, but I'm out of town this…",
-  },
-  {
-    avatarSrc: "/static/images/avatar/3.jpg",
-    primary: "Oui Oui",
-    secondary:
-      "Sandra Adams — Do you have Paris recommendations? Have you ever…",
-  },
-  // Add more items as needed in this format
-];
+export default function AlignItemsList(props) {
+    const { eventRows } = props;
 
-export default function AlignItemsList() {
   return (
     <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-      {items.map((item, index) => (
+      {eventRows.map((item, index) => (
         <React.Fragment key={index}>
           <ListItem alignItems="flex-start">
             <ListItemAvatar>
-              <Avatar alt={`Avatar ${index + 1}`} src={item.avatarSrc} />
+              <Avatar alt={`Avatar ${index + 1}`} src={"/static/logo.jpg"} />
             </ListItemAvatar>
             <ListItemText
-              primary={item.primary}
+              primary={item.name}
               secondary={
                 <React.Fragment>
                   <Typography
@@ -47,13 +23,14 @@ export default function AlignItemsList() {
                     variant="body2"
                     color="text.primary"
                   >
-                    {item.secondary}
+                    {item.dayFrom}  {(item.dayFrom === item.dayTo) ? "   "  : " - " + (item.dayTo)} {item.month} 
+                    <p>{item.department}</p>
                   </Typography>
                 </React.Fragment>
               }
             />
           </ListItem>
-          {index !== items.length - 1 && (
+          {index !== eventRows.length - 1 && (
             <Divider variant="inset" component="li" />
           )}
         </React.Fragment>

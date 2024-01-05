@@ -2,8 +2,8 @@ import * as React from 'react';
 // material
 import {
   Box,
-  Collapse,
-  IconButton,
+  Tabs,
+  Tab,
   Table,
   Paper,
   Button,
@@ -11,15 +11,11 @@ import {
   TableRow,
   TableBody,
   TableCell,
-  Typography,
   TableContainer,
 } from '@mui/material';
-import './DisplayEvent.css';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Iconify from '../../components/Iconify';
 import { useNavigate } from 'react-router-dom';
-import Months from './Months';
+import Items from "./Items";
 
 import CALENDARLIST from '../../_api_/calendar';
 
@@ -38,18 +34,19 @@ const TABLE_HEAD = [
 ];
 // ----------------------------------------------------------------------
 
-const displayData = () => {
-  console.log('Inside New Page: => ', CALENDARLIST);
-};
-
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
 
 function Row(props: { row: ReturnType<typeof CALENDARLIST> }) {
   const { row } = props;
-  const [open, setOpen] = React.useState(true);
 
   return (
     <React.Fragment>
-      <Months/>
+      <Items eventRows={row}/>
     </React.Fragment>
   );
 }
@@ -57,24 +54,60 @@ function Row(props: { row: ReturnType<typeof CALENDARLIST> }) {
 export default function CollapsibleTable() {
   const navigate = useNavigate();
 
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
   return (
     <TableContainer style={{ display: 'inlineTable', verticalAlign: 'super'}} component={Paper}>
       <Table aria-label="collapsible table">
-        <TableHead style={{ paddingBottom: 0, paddingTop: 0, background: 'turquoise', top: 0 }}>
+        <TableHead style={{ background: 'turquoise', top: 0 }}>
           <TableRow>
-            <TableCell>Calendar Events</TableCell>
-            <TableCell />
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
+            <TableCell>2024 Ministry Calendar</TableCell>
             <TableCell align="right">
               <Button
               variant="contained"
               onClick={() => navigate("/add-event")}
               startIcon={<Iconify icon="eva:plus-fill" />}
-            >
+              >
               Add
-            </Button></TableCell>
+              </Button>
+            </TableCell>
+            
+          </TableRow>
+          <TableRow>
+            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              variant="scrollable"
+              scrollButtons="auto"
+              allowScrollButtonsMobile
+              aria-label="scrollable auto tabs example"
+              style={{ paddingBottom: 0, paddingTop: 0, background: 'turquoise', top: 0 }}
+            >
+              {months.map((month, index) => (
+                <Tab key={index} label={month} {...a11yProps(index)} />
+              ))}
+            </Tabs>
+          </Box>          
           </TableRow>
         </TableHead>
         <TableBody>
