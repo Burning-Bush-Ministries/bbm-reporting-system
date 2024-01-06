@@ -12,6 +12,7 @@ import {
   TableBody,
   TableCell,
   TableContainer,
+  Typography
 } from '@mui/material';
 import Iconify from '../../components/Iconify';
 import { useNavigate } from 'react-router-dom';
@@ -29,15 +30,34 @@ function a11yProps(index) {
 
 
 
-function Row(props: { row: ReturnType<typeof CALENDARLIST> }) {
-  const { row } = props;
+function Row(props: { row: ReturnType<typeof CALENDARLIST>, month: String }) {
+  const { row, month } = props;
 
   return (
     <React.Fragment>
-      <Items eventRows={row}/>
+      <Items eventRows={row} month={month}/>
     </React.Fragment>
   );
 }
+
+function CustomTabPanel({ children, value, index, ...other }) {
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
 
 export default function CollapsibleTable() {
   const navigate = useNavigate();
@@ -95,11 +115,16 @@ export default function CollapsibleTable() {
                 <Tab key={index} label={month} {...a11yProps(index)} />
               ))}
             </Tabs>
-          </Box>          
+          </Box>   
+        
           </TableRow>
         </TableHead>
         <TableBody>
-            <Row  row={CALENDARLIST}/>
+            {months.map((month, index) => (
+            <CustomTabPanel key={index} value={value} index={index}>
+              <Row  row={CALENDARLIST} month={month}/> 
+            </CustomTabPanel>
+          ))}       
         </TableBody>
       </Table>
     </TableContainer>
