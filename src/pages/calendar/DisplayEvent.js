@@ -111,7 +111,7 @@ export default function CollapsibleTable() {
               allowScrollButtonsMobile
               aria-label="scrollable auto tabs example"
             >
-              {months.map((month, index) => (
+              {months?.map((month, index) => (
                 <Tab key={index} label={month} {...a11yProps(index)} />
               ))}
             </Tabs>
@@ -120,7 +120,7 @@ export default function CollapsibleTable() {
           </TableRow>
         </TableHead>
         <TableBody style={{ overflowY: 'auto' }}>
-            {months.map((month, index) => (
+            {months?.map((month, index) => (
             <CustomTabPanel key={index} value={value} index={index}>
               <Row  row={CALENDARLIST} month={month}/> 
             </CustomTabPanel>
