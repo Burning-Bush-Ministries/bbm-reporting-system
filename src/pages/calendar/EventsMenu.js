@@ -9,7 +9,7 @@ export default function EventCalendar() {
     return (
     <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
       <nav aria-label="main mailbox folders">
-        <List style={{ paddingBottom: 0, paddingTop: 0, background: 'turquoise' }}>
+        <List style={{ paddingBottom: 0, paddingTop: 0, background: 'darkcyan', color: 'white' }}>
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon >
