@@ -19,7 +19,7 @@ import Iconify from '../../components/Iconify';
 import { useNavigate } from 'react-router-dom';
 import Items from "./Items";
 import CALENDARLIST from '../../_api_/calendar';
-
+import './DisplayEvent.css';
 // ----------------------------------------------------------------------
 
 function a11yProps(index) {
@@ -83,14 +83,13 @@ export default function CollapsibleTable() {
   ];
 
   return (
-    <TableContainer style={{ display: 'inlineTable', verticalAlign: 'super'}} component={Paper}>
-      <Table aria-label="collapsible table">
-        <TableHead style={{ top: 0, borderBottom: '0px'  }}>
+    <TableContainer style={{ display: 'inlineTable', verticalAlign: 'super', width: '100%', overflow: 'auto'}} component={Paper}>
+      <Table aria-label="collapsible table" style={{ width: '100%', tableLayout: 'fixed' }}>
+        <TableHead style={{ top: 0, borderBottom: '0px', position: 'sticky', zIndex: '1',  }}>
           <TableRow  style={{ borderBottom: '0px'  }}>
             <TableCell style={{ background: 'darkcyan', color: 'white'}}>
-            <ListItemText primary="2024 Ministry Calendar" />
-
-              </TableCell>
+              <ListItemText primary="2024 Ministry Calendar" />
+            </TableCell>
             <TableCell align="right" style={{ background: 'darkcyan'}}>
               <Button
               variant="contained"
@@ -120,7 +119,7 @@ export default function CollapsibleTable() {
         
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody style={{ overflowY: 'auto' }}>
             {months.map((month, index) => (
             <CustomTabPanel key={index} value={value} index={index}>
               <Row  row={CALENDARLIST} month={month}/> 

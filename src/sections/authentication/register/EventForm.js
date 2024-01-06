@@ -48,7 +48,7 @@ export default function EventForm() {
       );
       console.log(response);
       if (response) {
-        navigate('/app/dashboard', { replace: true });
+        navigate('/app/event-display', { replace: true });
       } else {
         navigate('/add-event', { replace: true });
       }
