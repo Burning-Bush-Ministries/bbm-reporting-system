@@ -15,7 +15,7 @@ export default function AlignItemsList(props) {
         <React.Fragment key={index}>
           <ListItem alignItems="flex-start">
             <ListItemAvatar>
-              <Avatar alt={`Avatar ${index + 1}`} src={"/static/logo.jpg"} />
+              <Avatar height="194" alt={`Avatar ${index + 1}`} src={"/static/logo.jpg"} />
             </ListItemAvatar>
             <ListItemText
               primary={item.name}

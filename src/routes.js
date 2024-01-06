@@ -17,7 +17,6 @@ import ChurchRegister from './pages/ChurchRegister';
 import EventRegister from './pages/calendar/AddEvent';
 import StatsRegister from './pages/StatsRegister';
 import AddUser from './pages/AddUser';
-import CalendarPage from './pages/calendar/CalendarEvent';
 import EventMenu from './pages/calendar/EventsMenu';
 import DisplayEvent from './pages/calendar/DisplayEvent';
 // ----------------------------------------------------------------------
@@ -44,7 +43,7 @@ export default function Router() {
         // { path: 'reports', element: <NotFound /> },
         { path: 'cells', element: <NotFound /> },
         // { path: 'calendar', element: <CalendarPage /> },
-                { path: 'calendar', element: <NotFound /> },
+                { path: 'calendar', element: <DisplayEvent /> },
         // { path: 'cal' }
         { path: 'storage', element: <NotFound /> },
         { path: 'stats', element: <NotFound /> }

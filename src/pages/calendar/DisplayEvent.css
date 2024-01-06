@@ -11,3 +11,13 @@
     vertical-align: super !important;
     outline: 0px;
 }
+
+.css-1cfizo9-MuiTableRow-root {
+    color: inherit;
+    display: inline !important;
+    outline: 0;
+}
+
+.css-1uogrlq-MuiButtonBase-root-MuiTab-root {
+    padding: 12px 50px !important;
+}
