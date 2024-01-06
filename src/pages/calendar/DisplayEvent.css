@@ -17,3 +17,7 @@
     display: inline !important;
     outline: 0;
 }
+
+.css-1uogrlq-MuiButtonBase-root-MuiTab-root {
+    padding: 12px 50px !important;
+}
