@@ -16,22 +16,8 @@ import {
 import Iconify from '../../components/Iconify';
 import { useNavigate } from 'react-router-dom';
 import Items from "./Items";
-
 import CALENDARLIST from '../../_api_/calendar';
 
-// ----------------------------------------------------------------------
-const TABLE_HEAD = [
-  { id: 'id', label: 'No.', alignRight: false },
-  { id: 'name', label: 'Event Name', alignRight: false },
-  { id: 'time', label: 'Time', alignRight: false },
-  { id: 'dayFrom', label: 'Start Day', alignRight: false },
-  { id: 'dayTo', label: 'End Day', alignRight: false },
-  { id: 'month', label: 'Month', alignRight: false },
-  { id: 'year', label: 'Year', alignRight: false },
-  { id: 'department', label: 'Department', alignRight: false },
-  { id: 'region', label: 'Region', alignRight: false },
-  { id: '' }
-];
 // ----------------------------------------------------------------------
 
 function a11yProps(index) {
@@ -40,6 +26,8 @@ function a11yProps(index) {
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
+
+
 
 function Row(props: { row: ReturnType<typeof CALENDARLIST> }) {
   const { row } = props;
@@ -78,8 +66,8 @@ export default function CollapsibleTable() {
   return (
     <TableContainer style={{ display: 'inlineTable', verticalAlign: 'super'}} component={Paper}>
       <Table aria-label="collapsible table">
-        <TableHead style={{ background: 'turquoise', top: 0 }}>
-          <TableRow>
+        <TableHead style={{ background: 'turquoise', top: 0, borderBottom: '0px'  }}>
+          <TableRow  style={{ borderBottom: '0px'  }}>
             <TableCell>2024 Ministry Calendar</TableCell>
             <TableCell align="right">
               <Button

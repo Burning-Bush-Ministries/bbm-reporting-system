@@ -4,10 +4,13 @@ import Typography from "@mui/material/Typography";
 
 export default function AlignItemsList(props) {
     const { eventRows } = props;
+    
+    const sortedItems = [...eventRows].sort((a, b) => a.dayFrom - b.dayFrom);
+
 
   return (
-    <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-      {eventRows.map((item, index) => (
+    <List sx={{ width: "100%", bgcolor: "background.paper", background: "" }}>
+      {sortedItems.map((item, index) => (
         <React.Fragment key={index}>
           <ListItem alignItems="flex-start">
             <ListItemAvatar>
