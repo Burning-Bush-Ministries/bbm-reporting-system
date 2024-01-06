@@ -59,12 +59,13 @@ export default function AlignItemsList(props) {
                 </React.Fragment>
               }
             />
-            <IconButton aria-label="download" edge="end">
+    
+          </ListItem>
+          <IconButton aria-label="download">
             <ListItemAvatar>
-              <img width="100%" height="50" alt={`Avatar ${index + 1}`} src={"/static/poster/passover.png"} />
+              <img width="100%" height="50px" alt={`Avatar ${index + 1}`} src={"/static/poster/passover.png"} />
             </ListItemAvatar>
             </IconButton>
-          </ListItem>
           {index !== eventRows.length - 1 && (
             <Divider variant="inset" component="li" />
           )}

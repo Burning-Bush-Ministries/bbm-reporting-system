@@ -17,9 +17,9 @@ import {
 } from '@mui/material';
 import Iconify from '../../components/Iconify';
 import { useNavigate } from 'react-router-dom';
-import Items from "./Items";
 import CALENDARLIST from '../../_api_/calendar';
 import './DisplayEvent.css';
+import CardItem from './CardItem';
 // ----------------------------------------------------------------------
 
 function a11yProps(index) {
@@ -34,7 +34,7 @@ function Row(props: { row: ReturnType<typeof CALENDARLIST>, month: String }) {
 
   return (
     <React.Fragment>
-      <Items eventRows={row} month={month}/>
+      <CardItem eventRows={row} month={month}/>
     </React.Fragment>
   );
 }
@@ -116,7 +116,7 @@ export default function CollapsibleTable() {
               ))}
             </Tabs>
           </Box>   
-        
+
           </TableRow>
         </TableHead>
         <TableBody style={{ overflowY: 'auto' }}>
