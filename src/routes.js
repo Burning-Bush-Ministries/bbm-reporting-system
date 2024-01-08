@@ -1,4 +1,4 @@
-import { Navigate, useRoutes } from 'react-router-dom';
+import { Navigate, useRoutes, useNavigate } from 'react-router-dom';
 // layouts
 import DashboardLayout from './layouts/dashboard';
 import LogoOnlyLayout from './layouts/LogoOnlyLayout';
@@ -17,12 +17,13 @@ import ChurchRegister from './pages/ChurchRegister';
 import EventRegister from './pages/calendar/AddEvent';
 import StatsRegister from './pages/StatsRegister';
 import AddUser from './pages/AddUser';
-import CalendarPage from './pages/calendar/CalendarEvent';
 import EventMenu from './pages/calendar/EventsMenu';
 import DisplayEvent from './pages/calendar/DisplayEvent';
 // ----------------------------------------------------------------------
 
 export default function Router() {
+  const navigate = useNavigate();
+  
   return useRoutes([
     {
       path: '/app',
@@ -31,20 +32,19 @@ export default function Router() {
         { path: 'home', element: <Home /> },
         { path: 'event-menu', element: <EventMenu/>},
         { path: 'event-display', element: <DisplayEvent/>},
-        // { path: 'dashboard', element: <DashboardApp /> },
-        // { path: 'user', element: <User /> },
-        // { path: 'church', element: <Church /> },
-        // { path: 'stats', element: <StatsPage /> },
+        { path: 'dashboard', element: <DashboardApp /> },
+        { path: 'user', element: <User /> },
+        { path: 'church', element: <Church /> },
+        { path: 'stats', element: <StatsPage /> },
              { path: 'dashboard', element: <NotFound /> },
-        { path: 'user', element: <NotFound /> },
-        { path: 'church', element: <NotFound /> },
-        { path: 'stats', element: <NotFound /> },
-        { path: 'reports', element: <NotFound /> },
-
+        // { path: 'user', element: <NotFound /> },
+        // { path: 'church', element: <NotFound /> },
+        // { path: 'stats', element: <NotFound /> },
+        // { path: 'reports', element: <NotFound /> },
         { path: 'cells', element: <NotFound /> },
         // { path: 'calendar', element: <CalendarPage /> },
-                { path: 'calendar', element: <NotFound /> },
-
+                { path: 'calendar', element: <DisplayEvent /> },
+        // { path: 'cal' }
         { path: 'storage', element: <NotFound /> },
         { path: 'stats', element: <NotFound /> }
       ]
