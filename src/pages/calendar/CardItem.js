@@ -37,7 +37,7 @@ export default function RecipeReviewCard(props) {
 
             <Card sx={{ maxWidth: 330 }}>
                 <CardHeader
-                    avatar={<Avatar sx={{ bgcolor: 'white' }} aria-label="recipe">
+                    avatar={<Avatar sx={{ bgcolor: '#03989E' }} aria-label="recipe">
                         <Avatar height="194" src={getLogoUrl(item?.department)} />
                     </Avatar>}
                     // action={<IconButton aria-label="settings">
