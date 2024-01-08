@@ -1,27 +1,27 @@
 /* eslint-disable */
 
-import React, { Component } from 'react';
 import { filter } from 'lodash';
+import React, { Component } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 // material
 import {
-  Card,
-  Table,
-  Stack,
   Button,
+  Card,
   Checkbox,
-  TableRow,
+  Container,
+  Stack,
+  Table,
   TableBody,
   TableCell,
-  Container,
-  Typography,
   TableContainer,
-  TablePagination
+  TablePagination,
+  TableRow,
+  Typography
 } from '@mui/material';
 // components
+import Iconify from '../../components/Iconify';
 import Page from '../../components/Page';
 import Scrollbar from '../../components/Scrollbar';
-import Iconify from '../../components/Iconify';
 import SearchNotFound from '../../components/SearchNotFound';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../../sections/@dashboard/user';
 //
@@ -104,7 +104,7 @@ class CalendarPage extends Component {
     this.setState({ name: e.target.value });
   };
 
-  handleRequestSort = (event, property) => {
+  handleRequestSort = (_event, property) => {
     const isAsc = this.state.orderBy === property && this.state.order === 'asc';
     this.setState({ order: isAsc ? 'desc' : 'asc' });
     this.setState({ orderBy: property });
@@ -120,7 +120,7 @@ class CalendarPage extends Component {
     setSelected([]);
   };
 
-  handleClick = (event, name) => {
+  handleClick = (_event, name) => {
     const { selected } = this.state;
     const selectedIndex = selected.indexOf(name);
     let newSelected = [];
@@ -139,7 +139,7 @@ class CalendarPage extends Component {
     this.setState({ selected: newSelected });
   };
 
-  handleChangePage = (event, newPage) => {
+  handleChangePage = (_event, newPage) => {
     this.setState({ page: newPage });
   };
 

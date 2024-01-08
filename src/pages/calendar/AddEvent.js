@@ -1,12 +1,12 @@
 import { Link as RouterLink } from 'react-router-dom';
 // material
+import { Box, Card, Container, Link, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Box, Card, Link, Container, Typography } from '@mui/material';
 // layouts
-import AuthLayout from '../layouts/AuthLayout';
+import AuthLayout from '../../layouts/AuthLayout';
 // components
-import Page from '../components/Page';
-import { EventForm } from '../sections/authentication/register';
+import Page from '../../components/Page';
+import { EventForm } from '../../sections/authentication/register';
 
 // ----------------------------------------------------------------------
 

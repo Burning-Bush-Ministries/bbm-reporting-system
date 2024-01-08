@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { List, ListItem, ListItemButton, Box, ListItemIcon, Divider, ListItemText }  from '@mui/material';
+import { List, ListItem, ListItemButton, Box, ListItemIcon, Divider, ListItemText } from '@mui/material';
 import Iconify from '../../components/Iconify';
 import { useNavigate } from 'react-router-dom';
 

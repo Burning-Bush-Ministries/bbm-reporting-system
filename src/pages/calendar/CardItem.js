@@ -4,25 +4,9 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
 import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import {Avatar, ListItemAvatar, ListItemText, Divider, Typography, ListItem, List, IconButton } from "@mui/material";
-
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+import { Avatar, Typography, IconButton } from "@mui/material";
+import {YQ_LOGO, CK_LOGO, AOW_LOGO, FK_LOGO, Olea_LOGO, BBM_LOGO } from '../../utils/constant';
 
 export default function RecipeReviewCard(props) {
   const { eventRows, month } = props;
@@ -33,21 +17,28 @@ export default function RecipeReviewCard(props) {
 
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  const getLogoUrl = (department) => {
+    switch (department){
+        case 'Youth Quake': return YQ_LOGO;
+        case 'Faith Kids': return FK_LOGO;
+        case 'Army of Woman': return AOW_LOGO;
+        case 'Covenant Keepers': return CK_LOGO; 
+        case 'Olea-Bond': return Olea_LOGO;
+        default: return BBM_LOGO; 
+    }
+  }
 
   let dateString  = "";
   return (
     <Card>
-    {filteredItems?.map((item, index) => {
+    {filteredItems?.map((item) => {
         dateString = (item?.dayFrom) +' '+ ((item?.dayFrom === item?.dayTo) ? "   "  : " - " + (item?.dayTo)) +" "+item?.month+" "+ item?.region
         return (
 
             <Card sx={{ maxWidth: 330 }}>
                 <CardHeader
-                    avatar={<Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                        <Avatar height="194" src={"/static/logo.jpg"} />
+                    avatar={<Avatar sx={{ bgcolor: 'white' }} aria-label="recipe">
+                        <Avatar height="194" src={getLogoUrl(item?.department)} />
                     </Avatar>}
                     // action={<IconButton aria-label="settings">
                     //     <MoreVertIcon />
