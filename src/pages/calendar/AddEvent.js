@@ -1,7 +1,7 @@
 import { Link as RouterLink } from 'react-router-dom';
 // material
+import { Box, Card, Container, Link, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Box, Card, Link, Container, Typography } from '@mui/material';
 // layouts
 import AuthLayout from '../../layouts/AuthLayout';
 // components
@@ -48,7 +48,7 @@ export default function AddEvent() {
 
       <SectionStyle sx={{ display: { xs: 'none', md: 'flex' } }}>
         <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-          Be deligent to know the state of the flock
+          There's time for everything.
         </Typography>
         <img alt="register" src="/static/prev.png" />
       </SectionStyle>

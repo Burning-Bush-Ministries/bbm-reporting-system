@@ -2,24 +2,24 @@ import * as React from 'react';
 // material
 import {
   Box,
-  Tabs,
+  Button,
+  ListItemText,
+  Paper,
   Tab,
   Table,
-  Paper,
-  Button,
-  TableHead,
-  TableRow,
   TableBody,
   TableCell,
   TableContainer,
-  Typography,
-  ListItemText
+  TableHead,
+  TableRow,
+  Tabs,
+  Typography
 } from '@mui/material';
-import Iconify from '../../components/Iconify';
 import { useNavigate } from 'react-router-dom';
 import CALENDARLIST from '../../_api_/calendar';
-import './DisplayEvent.css';
+import Iconify from '../../components/Iconify';
 import CardItem from './CardItem';
+import './DisplayEvent.css';
 // ----------------------------------------------------------------------
 
 function a11yProps(index) {
@@ -63,7 +63,7 @@ export default function CollapsibleTable() {
 
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (_event, newValue) => {
     setValue(newValue);
   };
 
