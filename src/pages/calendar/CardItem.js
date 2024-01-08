@@ -28,6 +28,17 @@ export default function RecipeReviewCard(props) {
     }
   }
 
+  const getEventColor = (department) => {
+    switch (department){
+        case 'Youth Quake': return "#00FFFF";
+        case 'Faith Kids': return "#8B8000";
+        case 'Army of Woman': return  "#FFC0CB";
+        case 'Covenant Keepers': return "#87CEEB"; 
+        case 'Olea-Bond': return "#CBC3E3";
+        default: return "#90EE90"; 
+    }
+  }
+
   let dateString  = "";
   return (
     <Card>
@@ -35,7 +46,7 @@ export default function RecipeReviewCard(props) {
         dateString = (item?.dayFrom) +' '+ ((item?.dayFrom === item?.dayTo) ? "   "  : " - " + (item?.dayTo)) +" "+item?.month+" "+ item?.region
         return (
 
-            <Card sx={{ maxWidth: 330 }}>
+            <Card sx={{ maxWidth: 330, bgcolor: getEventColor(item?.department) }}>
                 <CardHeader
                     avatar={<Avatar sx={{ bgcolor: '#03989E' }} aria-label="recipe">
                         <Avatar height="194" src={getLogoUrl(item?.department)} />
