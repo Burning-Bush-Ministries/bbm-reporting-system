@@ -35,10 +35,19 @@
     -webkit-background-position: center;
     background-position: center;
     width: 100%;
-    object-fit: contain !important;
+    object-fit: fill !important;
 }
 
 .css-17pmaar-MuiCardContent-root {
     padding: 16px;
     padding: 2px !important;
+}
+
+.css-rhsghg {
+    display: block;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 100%;
+    object-fit: fill !important;
 }
