@@ -6,3 +6,4 @@ export const AOW_LOGO = '/static/logo/aow.png';
 export const CK_LOGO = '/static/logo/ck.png';
 export const Olea_LOGO = '/static/logo/olea.jpg';
 export const BBM_LOGO = '/static/logo/bbm.jpg';
+export const BBM_EVENT = '/static/logo/bbmEvent.png';

@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import { red } from '@mui/material/colors';
 import { Avatar, Typography, IconButton } from "@mui/material";
-import {YQ_LOGO, CK_LOGO, AOW_LOGO, FK_LOGO, Olea_LOGO, BBM_LOGO } from '../../utils/constant';
+import {YQ_LOGO, CK_LOGO, AOW_LOGO, FK_LOGO, Olea_LOGO, BBM_LOGO, BBM_EVENT } from '../../utils/constant';
 
 export default function RecipeReviewCard(props) {
   const { eventRows, month } = props;
@@ -50,7 +50,7 @@ export default function RecipeReviewCard(props) {
                 <CardMedia
                     component="img"
                     height="194"
-                    image="/static/poster/passover.png"
+                    image={BBM_EVENT}
                     alt="Paella dish" />
                 <CardContent>
                     <Typography variant="body1" color="text.secondary">
